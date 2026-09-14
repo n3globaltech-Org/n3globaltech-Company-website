@@ -135,13 +135,13 @@ import Footer from '../components/Footer.astro';
               <label for="service">Project Type <span class="req">*</span></label>
               <select id="service" name="service" required>
                 <option value="" disabled selected>Select a project type...</option>
-                <option value="custom_software">Custom Software</option>
+                <option value="website_development">Website Development</option>
+                <option value="mobile_app_development">Mobile App Development</option>
+                <option value="web_application">Web Application</option>
                 <option value="saas">SaaS</option>
-                <option value="web">Web</option>
-                <option value="mobile">Mobile</option>
-                <option value="ai_automation">AI / Automation</option>
-                <option value="branding">Branding</option>
-                <option value="other">Other</option>
+                <option value="cloud_devops">Cloud / DevOps</option>
+                <option value="software_support">Software Support</option>
+                <option value="custom_software_implementation">Custom Software / Implementation</option>
               </select>
             </div>
 
@@ -717,7 +717,8 @@ import Footer from '../components/Footer.astro';
             email: email,
             phone: null,
             company: (data.get('company') || '').toString().trim() || null,
-            project_type: service,
+            interest: service,
+            pageUrl: window.location.href,
             message: message,
             metadata: {
               referrer: document.referrer || null,

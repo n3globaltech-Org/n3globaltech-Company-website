@@ -21,6 +21,7 @@ const META: Record<string, { priority: number; changefreq: string }> = {
   '/guides/ai/model-context-protocol-mcp-server-architecture/': { priority: 0.8, changefreq: 'weekly' },
   '/blog/custom-software-saas-kerala/':           { priority: 0.7,  changefreq: 'weekly'  },
   '/blog/website-development-cost-kerala-2026/':  { priority: 0.7,  changefreq: 'weekly'  },
+  '/careers/':                                  { priority: 0.75, changefreq: 'weekly'  },
   '/contact/':                                    { priority: 0.7,  changefreq: 'yearly'  },
   '/faq/':                                        { priority: 0.6,  changefreq: 'yearly'  },
   '/privacy-policy/':                             { priority: 0.3,  changefreq: 'yearly'  },

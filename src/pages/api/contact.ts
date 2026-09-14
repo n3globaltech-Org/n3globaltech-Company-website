@@ -1,168 +1,78 @@
 import type { APIRoute } from 'astro';
 
-// Server-side endpoint: forwards lead data to the CRM with the bearer token
-// attached server-side, so the token never touches the browser.
+// Cloudflare server endpoint. CRM_API_TOKEN is a secret binding and is never
+// serialized into browser JavaScript or returned in a response.
 export const prerender = false;
 
-const ALLOWED_SERVICES = new Set([
-  'web', 'mobile', 'cloud', 'ai', 'security', 'consulting', 'other',
-]);
-const ALLOWED_BUDGETS = new Set([
-  'under10k', '10k-20k', '20k-50k', '50k-1L', '1L-2L', '2L+',
+const ALLOWED_INTERESTS = new Set([
+  'website_development', 'mobile_app_development', 'web_application', 'saas', 'cloud_devops', 'software_support', 'custom_software_implementation',
 ]);
 
 function jsonResponse(status: number, body: Record<string, unknown>): Response {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: { 'Content-Type': 'application/json' },
-  });
+  return new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
 }
 
-export const POST: APIRoute = async ({ request, clientAddress }) => {
-  // Use import.meta.env for Cloudflare Pages/Astro compatibility.
-  // In Cloudflare, Astro reads these from bindings.
-  const apiUrl = import.meta.env.CRM_API_URL;
+export const POST: APIRoute = async ({ request }) => {
   const apiToken = import.meta.env.CRM_API_TOKEN;
-
-  if (!apiUrl || !apiToken) {
-    return jsonResponse(500, {
-      success: false,
-      error_code: 'misconfigured',
-      message: 'Contact endpoint is not configured. Please email contact@n3global.tech.',
-    });
-  }
+  const apiBaseUrl = String(import.meta.env.CRM_API_BASE_URL ?? '').replace(/\/$/, '');
+  const publicId = String(import.meta.env.CRM_WEBSITE_PUBLIC_ID ?? '');
+  const apiUrl = import.meta.env.CRM_API_URL || (apiBaseUrl && publicId ? apiBaseUrl + '/api/website-enquiries/' + publicId : '');
+  if (!apiUrl || !apiToken) return jsonResponse(500, {
+    success: false, error_code: 'misconfigured',
+    message: 'Contact endpoint is not configured. Please email contact@n3global.tech.',
+  });
 
   let payload: Record<string, unknown>;
-  try {
-    payload = await request.json();
-  } catch {
-    return jsonResponse(400, {
-      success: false,
-      error_code: 'invalid_json',
-      message: 'Invalid request body.',
-    });
-  }
+  try { payload = await request.json(); }
+  catch { return jsonResponse(400, { success: false, error_code: 'invalid_json', message: 'Invalid request body.' }); }
 
-  // Honeypot — bots fill any field with name "website"
-  if (typeof payload.website === 'string' && payload.website.trim() !== '') {
-    // Pretend success so the bot moves on
+  if (typeof payload.website === 'string' && payload.website.trim()) {
     return jsonResponse(201, { success: true, lead_id: 'noop' });
   }
 
-  // Server-side validation (in addition to client-side)
-  const firstName = String(payload.first_name ?? '').trim();
-  const lastName = String(payload.last_name ?? '').trim();
-  const email = String(payload.email ?? '').trim();
-  const message = String(payload.message ?? '').trim();
-  const service = String(payload.service_interest ?? '');
-  const budget = String(payload.budget_range ?? '');
+  const name = String(payload.name ?? '').trim();
+  const email = String(payload.email ?? '').trim().toLowerCase();
+  const phone = String(payload.phone ?? '').trim();
   const company = String(payload.company ?? '').trim();
-  const ndaRequested = payload.nda_requested === true;
+  const interest = String(payload.interest ?? '').trim();
+  const message = String(payload.message ?? '').trim();
+  if (!name) return jsonResponse(400, { success: false, message: 'Please enter your name.' });
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return jsonResponse(400, { success: false, message: 'Please enter a valid email address.' });
+  if (!ALLOWED_INTERESTS.has(interest)) return jsonResponse(400, { success: false, message: 'Please select a valid project type.' });
+  if (message.length < 10 || message.length > 5_000) return jsonResponse(400, { success: false, message: 'Please provide a message between 10 and 5,000 characters.' });
+  if (phone && (phone.length < 7 || phone.length > 30)) return jsonResponse(400, { success: false, message: 'Please enter a valid phone number.' });
 
-  if (!firstName || !lastName) {
-    return jsonResponse(400, {
-      success: false, error_code: 'validation_failed',
-      message: 'Please enter your full name.',
-      field_errors: { first_name: !firstName ? 'Required' : undefined, last_name: !lastName ? 'Required' : undefined },
-    });
-  }
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return jsonResponse(400, {
-      success: false, error_code: 'validation_failed',
-      message: 'Please enter a valid email address.',
-      field_errors: { email: 'Invalid email' },
-    });
-  }
-  if (!ALLOWED_SERVICES.has(service)) {
-    return jsonResponse(400, {
-      success: false, error_code: 'validation_failed',
-      message: 'Please select a valid service.',
-      field_errors: { service_interest: 'Invalid value' },
-    });
-  }
-  if (budget && !ALLOWED_BUDGETS.has(budget)) {
-    return jsonResponse(400, {
-      success: false, error_code: 'validation_failed',
-      message: 'Please select a valid budget range.',
-      field_errors: { budget_range: 'Invalid value' },
-    });
-  }
-  if (!message || message.length < 10) {
-    return jsonResponse(400, {
-      success: false, error_code: 'validation_failed',
-      message: 'Please tell us a bit more about your project (at least 10 characters).',
-      field_errors: { message: 'Too short' },
-    });
-  }
-  if (message.length > 5000) {
-    return jsonResponse(400, {
-      success: false, error_code: 'validation_failed',
-      message: 'Message is too long (max 5000 characters).',
-      field_errors: { message: 'Too long' },
-    });
-  }
-
-  const referrer = String(payload?.metadata && typeof payload.metadata === 'object'
-    ? ((payload.metadata as Record<string, unknown>).referrer ?? '') : '') || null;
-
-  const body = {
-    first_name: firstName,
-    last_name: lastName,
-    email,
-    phone: payload.phone ?? null,
-    company: company || null,
-    service_interest: service,
-    budget_range: budget || null,
-    message,
-    nda_requested: ndaRequested,
-    source: 'website',
-    submitted_at: new Date().toISOString(),
-    metadata: {
-      ip: clientAddress ?? null,
-      user_agent: request.headers.get('user-agent') ?? null,
-      referrer,
-    },
-  };
-
+  const requestUrl = new URL(request.url);
+  const pageUrl = typeof payload.pageUrl === 'string' ? payload.pageUrl : undefined;
+  const metadata = payload.metadata && typeof payload.metadata === 'object' ? payload.metadata : {};
   try {
     const upstream = await fetch(apiUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiToken}`,
+        Authorization: `Bearer ${apiToken}`,
+        'Idempotency-Key': crypto.randomUUID(),
+        'X-Website-Origin': requestUrl.origin,
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify({ name, email, phone: phone || null, company: company || null, interest, message, pageUrl, metadata }),
     });
-
     let upstreamBody: Record<string, unknown> = {};
-    try { upstreamBody = await upstream.json(); } catch { /* ignore */ }
-
-    if (!upstream.ok || upstreamBody.success === false) {
-      return jsonResponse(upstream.status >= 400 ? upstream.status : 502, {
-        success: false,
-        error_code: typeof upstreamBody.error_code === 'string' ? upstreamBody.error_code : 'upstream_error',
-        message: typeof upstreamBody.message === 'string'
-          ? upstreamBody.message
-          : 'We could not deliver your message right now. Please try again or email contact@n3global.tech.',
-      });
-    }
-
+    try { upstreamBody = await upstream.json(); } catch { /* response body is optional */ }
+    if (!upstream.ok) return jsonResponse(upstream.status >= 400 && upstream.status < 500 ? upstream.status : 502, {
+      success: false,
+      error_code: typeof upstreamBody.error_code === 'string' ? upstreamBody.error_code : 'upstream_error',
+      message: typeof upstreamBody.message === 'string' ? upstreamBody.message : 'We could not deliver your message right now. Please try again or email contact@n3global.tech.',
+    });
     return jsonResponse(201, {
       success: true,
-      lead_id: typeof upstreamBody.lead_id === 'string' ? upstreamBody.lead_id : null,
+      lead_id: typeof upstreamBody.id === 'string' ? upstreamBody.id : null,
+      lead_code: typeof upstreamBody.code === 'string' ? upstreamBody.code : null,
       message: 'Enquiry received. We will get back to you shortly.',
     });
-  } catch (err) {
-    console.error('CRM proxy error:', err);
-    return jsonResponse(502, {
-      success: false,
-      error_code: 'upstream_unreachable',
-      message: 'We could not reach our CRM right now. Please try again or email contact@n3global.tech.',
-    });
+  } catch (error) {
+    console.error('CRM proxy error:', error instanceof Error ? error.message : 'unknown error');
+    return jsonResponse(502, { success: false, error_code: 'upstream_unreachable', message: 'We could not reach our CRM right now. Please try again or email contact@n3global.tech.' });
   }
 };
 
-// Reject other methods cleanly
-export const GET: APIRoute = () => jsonResponse(405, {
-  success: false, error_code: 'method_not_allowed', message: 'Use POST.',
-});
+export const GET: APIRoute = () => jsonResponse(405, { success: false, error_code: 'method_not_allowed', message: 'Use POST.' });

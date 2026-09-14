@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+<Layout title="Careers at N3 Global Tech" description="Explore software engineering, product and technology careers at N3 Global Tech in Kannur, Kerala and remote.">
+  <Navbar />
+  <main>
+    <section class="careers-hero"><div class="container"><div class="badge badge-sky">Careers</div><h1>Build useful technology<br />with people who care.</h1><p>View our current openings and apply directly. Every application is reviewed by our team.</p></div></section>
+    <section class="section"><div class="container"><div id="jobs-status" class="status">Loading current openings…</div><div id="jobs" class="jobs"></div></div></section>
+  </main>
+  <Footer />
+</Layout>
+<template id="application-template"><form class="apply-form"><h3>Apply for <span data-job-title></span></h3><input type="hidden" name="slug" /><div class="form-grid"><label>Full name *<input name="name" required minlength="2" /></label><label>Email *<input name="email" type="email" required /></label><label>Phone<input name="phone" /></label><label>Location<input name="location" /></label></div><label>Résumé (PDF, DOC or DOCX, max 5 MB) *<input name="resume" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required /></label><label>About you / cover letter<textarea name="coverLetter" rows="6" maxlength="10000"></textarea></label><label class="consent"><input name="consent" type="checkbox" required /> I agree that N3 Global Tech may process my application information for recruitment.</label><input class="honeypot" name="website" tabindex="-1" autocomplete="off" /><div class="actions"><button class="btn btn-primary" type="submit">Submit application</button><button class="btn cancel" type="button">Cancel</button></div><p class="form-message" aria-live="polite"></p></form></template>
+<style>
+  .careers-hero{padding:calc(72px + 5rem) 0 5rem;text-align:center;background:linear-gradient(180deg,#f0f9ff,#fff)}.careers-hero h1{margin:1rem 0;font-size:clamp(2.7rem,7vw,5.5rem);line-height:.98;letter-spacing:-.05em}.careers-hero p{max-width:680px;margin:auto;color:var(--text-secondary);font-size:1.1rem}.status{text-align:center;color:var(--text-secondary);padding:3rem}.jobs{display:grid;gap:1rem;max-width:900px;margin:auto}.job{background:#fff;border:1px solid #e5e7eb;border-radius:1.25rem;padding:1.5rem;box-shadow:0 8px 25px rgba(15,23,42,.04)}.job-top{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start}.job h2{margin:0;font-size:1.35rem}.meta{margin:.55rem 0;color:#64748b}.description{white-space:pre-line;line-height:1.7;color:#334155}.apply-form{margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid #e5e7eb}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.apply-form label{display:grid;gap:.4rem;margin:.8rem 0;font-size:.9rem;font-weight:600}.apply-form input,.apply-form textarea{border:1px solid #cbd5e1;border-radius:.7rem;padding:.75rem;font:inherit}.consent{display:flex!important;grid-template-columns:auto 1fr!important;align-items:flex-start;font-weight:400!important}.consent input{margin-top:.15rem}.actions{display:flex;gap:.7rem;align-items:center}.cancel{border:1px solid #cbd5e1;background:#fff}.form-message{font-size:.9rem}.honeypot{position:absolute!important;left:-9999px}.job-details{margin-top:1rem}.requirements{white-space:pre-line}.job-actions{display:flex;gap:.5rem}@media(max-width:650px){.form-grid{grid-template-columns:1fr}.job-top{flex-direction:column}.job-actions{width:100%}.job-actions button{width:100%}}
+</style>
+<script is:inline>
+(async function () {
+  var status = document.getElementById('jobs-status');
+  var root = document.getElementById('jobs');
+  var template = document.getElementById('application-template');
+  try {
+    var response = await fetch('/api/careers/jobs');
+    if (!response.ok) throw new Error();
+    var jobs = await response.json();
+    status.hidden = true;
+    if (!jobs.length) {
+      status.hidden = false;
+      status.textContent = 'There are no open positions right now. Please check again later.';
+      return;
+    }
+    jobs.forEach(function (job) {
+      var card = document.createElement('article');
+      card.className = 'job';
+      card.innerHTML = '<div class="job-top"><div><h2></h2><p class="meta"></p></div><div class="job-actions"><button class="btn btn-primary apply">Apply</button></div></div><div class="job-details"><p class="description"></p><div class="requirements"></div></div>';
+      card.querySelector('h2').textContent = job.title;
+      card.querySelector('.meta').textContent = [job.department, job.location, job.workplaceType && job.workplaceType.replace('_', ' '), job.employmentType && job.employmentType.replace('_', ' ')].filter(Boolean).join(' · ');
+      card.querySelector('.description').textContent = job.description;
+      if (job.requirements) {
+        var req = card.querySelector('.requirements');
+        var heading = document.createElement('h3'); heading.textContent = 'Requirements';
+        var content = document.createElement('p'); content.textContent = job.requirements;
+        req.append(heading, content);
+      }
+      card.querySelector('.apply').onclick = function () {
+        document.querySelectorAll('.apply-form').forEach(function (form) { form.remove(); });
+        var fragment = template.content.cloneNode(true), form = fragment.querySelector('form');
+        form.querySelector('[data-job-title]').textContent = job.title;
+        form.elements.slug.value = job.slug;
+        form.querySelector('.cancel').onclick = function () { form.remove(); };
+        form.onsubmit = submitApplication;
+        card.appendChild(fragment);
+        card.querySelector('.apply-form input[name=name]').focus();
+      };
+      root.appendChild(card);
+    });
+  } catch { status.textContent = 'We could not load current openings. Please try again later.'; }
+
+  async function submitApplication(event) {
+    event.preventDefault();
+    var form = event.currentTarget, button = form.querySelector('button[type=submit]'), message = form.querySelector('.form-message'), data = new FormData(form);
+    var file = data.get('resume');
+    button.disabled = true; button.textContent = 'Uploading résumé…';
+    try {
+      if (!(file instanceof File) || !file.size) throw new Error('Please select your résumé.');
+      var signResponse = await fetch('/api/careers/resume-upload', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug: data.get('slug'), fileName: file.name, mimeType: file.type, fileSize: file.size }),
+      });
+      var signed = await signResponse.json();
+      if (!signResponse.ok) throw new Error(signed.message || 'Could not prepare résumé upload');
+      var uploadResponse = await fetch(signed.uploadUrl, { method: 'PUT', headers: signed.headers, body: file });
+      if (!uploadResponse.ok) throw new Error('Résumé upload failed. Please try again.');
+      button.textContent = 'Submitting…';
+      var response = await fetch('/api/careers/apply', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug: data.get('slug'), name: data.get('name'), email: data.get('email'), phone: data.get('phone'), location: data.get('location'), coverLetter: data.get('coverLetter'), consent: data.get('consent') === 'on', website: data.get('website'), resumeUploadToken: signed.uploadToken }),
+      });
+      var body = await response.json();
+      if (!response.ok) throw new Error(body.message || 'Submission failed');
+      form.reset(); message.textContent = 'Application received. We have sent a confirmation to your email.'; message.style.color = '#15803d'; button.hidden = true;
+    } catch (error) {
+      message.textContent = error.message || 'We could not submit your application.'; message.style.color = '#b91c1c'; button.disabled = false; button.textContent = 'Submit application';
+    }
+  }
+})();
+</script>
