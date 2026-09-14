@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { getCrmConfig } from '../../lib/server/crm-config';
 
 // Cloudflare server endpoint. CRM_API_TOKEN is a secret binding and is never
 // serialized into browser JavaScript or returned in a response.
@@ -13,15 +14,12 @@ function jsonResponse(status: number, body: Record<string, unknown>): Response {
 }
 
 export const POST: APIRoute = async ({ request }) => {
-  const apiToken = import.meta.env.CRM_API_TOKEN;
-  const apiBaseUrl = String(import.meta.env.CRM_API_BASE_URL ?? '').replace(/\/$/, '');
-  const publicId = String(import.meta.env.CRM_WEBSITE_PUBLIC_ID ?? '');
-  const apiUrl = import.meta.env.CRM_API_URL || (apiBaseUrl && publicId ? apiBaseUrl + '/api/website-enquiries/' + publicId : '');
-  if (!apiUrl || !apiToken) return jsonResponse(500, {
+  const config = getCrmConfig();
+  if (!config) return jsonResponse(500, {
     success: false, error_code: 'misconfigured',
     message: 'Contact endpoint is not configured. Please email contact@n3global.tech.',
   });
-
+  const apiUrl = config.baseUrl + '/api/website-enquiries/' + config.publicId;
   let payload: Record<string, unknown>;
   try { payload = await request.json(); }
   catch { return jsonResponse(400, { success: false, error_code: 'invalid_json', message: 'Invalid request body.' }); }
@@ -50,7 +48,7 @@ export const POST: APIRoute = async ({ request }) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${apiToken}`,
+        Authorization: `Bearer ${config.token}`,
         'Idempotency-Key': crypto.randomUUID(),
         'X-Website-Origin': requestUrl.origin,
       },

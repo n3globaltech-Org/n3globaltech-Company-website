@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { getCrmConfig } from '../../../lib/server/crm-config';
 export const prerender = false;
 
 const ALLOWED_MIME = new Set([
@@ -9,7 +10,7 @@ const ALLOWED_MIME = new Set([
 const MAX_BYTES = 5 * 1024 * 1024;
 
 export const POST: APIRoute = async ({ request }) => {
-  const config = crmConfig();
+  const config = getCrmConfig();
   if (!config) return json(500, { message: 'Applications are temporarily unavailable.' });
   let body: Record<string, unknown>;
   try { body = await request.json(); } catch { return json(400, { message: 'Invalid upload request.' }); }
@@ -31,11 +32,4 @@ export const POST: APIRoute = async ({ request }) => {
   } catch { return json(502, { message: 'We could not prepare the résumé upload. Please try again.' }); }
 };
 
-function crmConfig() {
-  const token = import.meta.env.CRM_API_TOKEN; const base = import.meta.env.CRM_API_BASE_URL; const publicId = import.meta.env.CRM_WEBSITE_PUBLIC_ID; const legacy = import.meta.env.CRM_API_URL;
-  if (!token) return null;
-  if (base && publicId) return { token, baseUrl: String(base).replace(/\/$/, ''), publicId: String(publicId) };
-  if (!legacy) return null;
-  try { const url = new URL(legacy); return { token, baseUrl: url.origin, publicId: url.pathname.split('/').filter(Boolean).at(-1)! }; } catch { return null; }
-}
 function json(status: number, value: unknown) { return new Response(JSON.stringify(value), { status, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' } }); }
