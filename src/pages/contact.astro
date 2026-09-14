@@ -132,6 +132,11 @@ import Footer from '../components/Footer.astro';
             </div>
 
             <div class="form-group">
+              <label for="phone">Mobile number <span class="form-optional">(optional)</span></label>
+              <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" autocomplete="tel" inputmode="tel" maxlength="30" />
+            </div>
+
+            <div class="form-group">
               <label for="service">Project Type <span class="req">*</span></label>
               <select id="service" name="service" required>
                 <option value="" disabled selected>Select a project type...</option>
@@ -169,17 +174,24 @@ import Footer from '../components/Footer.astro';
               <span id="form-error-text">Something went wrong. Please try again or email us at contact@n3global.tech.</span>
             </div>
 
-            <!-- Success message -->
-            <div class="form-success" id="form-success" aria-live="polite">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--sky-500)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-              <h3>Message Sent!</h3>
-              <p>Thank you for reaching out. Our team will review your message and get back to you within 24 hours.</p>
-            </div>
           </form>
         </div>
       </div>
     </div>
   </section>
+
+  <div class="success-modal" id="form-success" role="dialog" aria-modal="true" aria-labelledby="success-title" hidden>
+    <button class="success-modal__backdrop" type="button" data-close-success aria-label="Close confirmation"></button>
+    <div class="success-modal__panel" role="document">
+      <button class="success-modal__close" type="button" data-close-success aria-label="Close confirmation">×</button>
+      <div class="success-modal__icon">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      </div>
+      <h3 id="success-title">Message sent successfully</h3>
+      <p>Thank you for contacting N3 Global Tech. Our team will review your requirements and respond within 24 hours.</p>
+      <button class="btn btn-primary success-modal__action" type="button" data-close-success>Done</button>
+    </div>
+  </div>
 
   <!-- Map / Location -->
   <section class="section-sm map-section">
@@ -443,6 +455,7 @@ import Footer from '../components/Footer.astro';
   }
 
   .req { color: var(--sky-700); }
+  .form-optional { color: var(--gray-400); font-weight: 400; }
 
   .form-group input,
   .form-group select,
@@ -518,35 +531,76 @@ import Footer from '../components/Footer.astro';
     margin-top: -0.5rem;
   }
 
-  .form-success {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 0.75rem;
-    padding: 2rem;
-    background: var(--sky-50);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--sky-100);
+  .success-modal[hidden] { display: none; }
+  .success-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: grid;
+    place-items: center;
+    padding: 1rem;
   }
-
-  .form-success h3 {
+  .success-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    border: 0;
+    background: rgba(15, 23, 42, 0.58);
+    backdrop-filter: blur(4px);
+    cursor: default;
+  }
+  .success-modal__panel {
+    position: relative;
+    width: min(100%, 440px);
+    border: 1px solid var(--gray-100);
+    border-radius: var(--radius-xl);
+    background: var(--white);
+    box-shadow: var(--shadow-xl);
+    padding: 2.25rem;
+    text-align: center;
+  }
+  .success-modal__close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.9rem;
+    width: 2rem;
+    height: 2rem;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--gray-500);
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .success-modal__close:hover { background: var(--gray-50); }
+  .success-modal__icon {
+    width: 4rem;
+    height: 4rem;
+    margin: 0 auto 1.25rem;
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    background: var(--sky-50);
+    color: var(--sky-600);
+  }
+  .success-modal h3 {
     font-family: var(--font-sans);
     font-size: var(--heading-sm);
-    font-weight: 500;
+    font-weight: 600;
     color: var(--gray-900);
   }
-
-  .form-success p {
+  .success-modal p {
+    margin-top: 0.75rem;
     font-family: var(--font-sans);
     color: var(--text-secondary);
     font-size: var(--body-sm);
     line-height: 1.7;
   }
-
-  .form-success.visible {
-    display: flex;
+  .success-modal__action {
+    width: 100%;
+    margin-top: 1.5rem;
   }
+  body.success-modal-open { overflow: hidden; }
 
   /* Honeypot — visually hidden but accessible */
   .hp-field {
@@ -637,8 +691,23 @@ import Footer from '../components/Footer.astro';
     var errorText = document.getElementById('form-error-text');
     var submitBtn = document.getElementById('submit-btn');
     var submitLabel = submitBtn ? submitBtn.querySelector('.btn-submit__label') : null;
+    var successCloseButtons = document.querySelectorAll('[data-close-success]');
 
     if (!form || !successMsg || !errorMsg || !submitBtn || !submitLabel) return;
+
+    function closeSuccess() {
+      successMsg.hidden = true;
+      document.body.classList.remove('success-modal-open');
+      submitBtn.disabled = false;
+      submitLabel.textContent = 'Send Message';
+    }
+
+    successCloseButtons.forEach(function (button) {
+      button.addEventListener('click', closeSuccess);
+    });
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && !successMsg.hidden) closeSuccess();
+    });
 
     // Prefill form from URL query parameters (e.g., from modal feedback)
     try {
@@ -684,6 +753,7 @@ import Footer from '../components/Footer.astro';
       var data = new FormData(form);
       var name = (data.get('name') || '').toString().trim();
       var email = (data.get('email') || '').toString().trim();
+      var phone = (data.get('phone') || '').toString().trim();
       var message = (data.get('message') || '').toString().trim();
       var service = (data.get('service') || '').toString();
 
@@ -693,6 +763,10 @@ import Footer from '../components/Footer.astro';
       }
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         showError('Please enter a valid email address.');
+        return;
+      }
+      if (phone && (phone.length < 7 || phone.length > 30)) {
+        showError('Please enter a valid mobile number.');
         return;
       }
       if (!service) {
@@ -715,7 +789,7 @@ import Footer from '../components/Footer.astro';
           body: JSON.stringify({
             name: (data.get('name') || '').toString().trim(),
             email: email,
-            phone: null,
+            phone: phone || null,
             company: (data.get('company') || '').toString().trim() || null,
             interest: service,
             pageUrl: window.location.href,
@@ -737,8 +811,11 @@ import Footer from '../components/Footer.astro';
           return;
         }
 
-        form.style.display = 'none';
-        successMsg.classList.add('visible');
+        form.reset();
+        successMsg.hidden = false;
+        document.body.classList.add('success-modal-open');
+        var closeButton = successMsg.querySelector('.success-modal__action');
+        if (closeButton) closeButton.focus();
       } catch (err) {
         console.error('Contact form submit error:', err);
         showError('We could not reach our servers. Please try again or email contact@n3global.tech.');
