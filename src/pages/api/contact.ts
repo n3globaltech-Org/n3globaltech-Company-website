@@ -5,10 +5,24 @@ import { getCrmConfig } from '../../lib/server/crm-config';
 // serialized into browser JavaScript or returned in a response.
 export const prerender = false;
 
-const ALLOWED_INTERESTS = new Set([
-  'custom_software', 'saas', 'web', 'mobile', 'ai_automation', 'cloud_infra', 'branding', 'other',
-  'website_development', 'mobile_app_development', 'web_application', 'cloud_devops', 'software_support', 'custom_software_implementation',
-]);
+const N3_BOOKS_INTEREST_MAP: Record<string, string> = {
+  custom_software: 'custom_software_implementation',
+  saas: 'saas',
+  web: 'web_application',
+  mobile: 'mobile_app_development',
+  ai_automation: 'custom_software_implementation',
+  cloud_infra: 'cloud_devops',
+  branding: 'website_development',
+  other: 'custom_software_implementation',
+  website_development: 'website_development',
+  mobile_app_development: 'mobile_app_development',
+  web_application: 'web_application',
+  cloud_devops: 'cloud_devops',
+  software_support: 'software_support',
+  custom_software_implementation: 'custom_software_implementation',
+};
+
+const ALLOWED_INTERESTS = new Set(Object.keys(N3_BOOKS_INTEREST_MAP));
 
 function jsonResponse(status: number, body: Record<string, unknown>): Response {
   return new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
@@ -33,17 +47,21 @@ export const POST: APIRoute = async ({ request }) => {
   const email = String(payload.email ?? '').trim().toLowerCase();
   const phone = String(payload.phone ?? '').trim();
   const company = String(payload.company ?? '').trim();
-  const interest = String(payload.interest ?? payload.service ?? payload.project_type ?? '').trim();
+  const rawInterest = String(payload.interest ?? payload.service ?? payload.project_type ?? '').trim();
   const message = String(payload.message ?? '').trim();
   if (!name) return jsonResponse(400, { success: false, message: 'Please enter your name.' });
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return jsonResponse(400, { success: false, message: 'Please enter a valid email address.' });
-  if (!ALLOWED_INTERESTS.has(interest)) return jsonResponse(400, { success: false, message: 'Please select a valid project type.' });
+  if (!ALLOWED_INTERESTS.has(rawInterest)) return jsonResponse(400, { success: false, message: 'Please select a valid project type.' });
+  const interest = N3_BOOKS_INTEREST_MAP[rawInterest] ?? rawInterest;
   if (message.length < 10 || message.length > 5_000) return jsonResponse(400, { success: false, message: 'Please provide a message between 10 and 5,000 characters.' });
   if (phone && (phone.length < 7 || phone.length > 30)) return jsonResponse(400, { success: false, message: 'Please enter a valid phone number.' });
 
   const requestUrl = new URL(request.url);
   const pageUrl = typeof payload.pageUrl === 'string' ? payload.pageUrl : undefined;
-  const metadata = payload.metadata && typeof payload.metadata === 'object' ? payload.metadata : {};
+  const metadata = {
+    ...(payload.metadata && typeof payload.metadata === 'object' ? payload.metadata : {}),
+    service_selection: rawInterest,
+  };
   try {
     const upstream = await fetch(apiUrl, {
       method: 'POST',
