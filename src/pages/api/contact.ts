@@ -6,7 +6,8 @@ import { getCrmConfig } from '../../lib/server/crm-config';
 export const prerender = false;
 
 const ALLOWED_INTERESTS = new Set([
-  'website_development', 'mobile_app_development', 'web_application', 'saas', 'cloud_devops', 'software_support', 'custom_software_implementation',
+  'custom_software', 'saas', 'web', 'mobile', 'ai_automation', 'cloud_infra', 'branding', 'other',
+  'website_development', 'mobile_app_development', 'web_application', 'cloud_devops', 'software_support', 'custom_software_implementation',
 ]);
 
 function jsonResponse(status: number, body: Record<string, unknown>): Response {
@@ -32,7 +33,7 @@ export const POST: APIRoute = async ({ request }) => {
   const email = String(payload.email ?? '').trim().toLowerCase();
   const phone = String(payload.phone ?? '').trim();
   const company = String(payload.company ?? '').trim();
-  const interest = String(payload.interest ?? '').trim();
+  const interest = String(payload.interest ?? payload.service ?? payload.project_type ?? '').trim();
   const message = String(payload.message ?? '').trim();
   if (!name) return jsonResponse(400, { success: false, message: 'Please enter your name.' });
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return jsonResponse(400, { success: false, message: 'Please enter a valid email address.' });
