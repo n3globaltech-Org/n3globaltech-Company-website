@@ -1,28 +1,86 @@
 ---
+interface Props {
+  limit?: number;
+}
+const { limit } = Astro.props;
 const faqs = [
   {
-    question: "What services does N3 Global Tech offer?",
-    answer: "We offer end-to-end software development including custom web development, mobile app development, cloud solutions, AI/ML integration, UI/UX design, brand identity, MVP development, and digital marketing."
+    question: "What types of businesses do you work with?",
+    answer: "We work with startups, growing companies, established organisations, and enterprise teams looking to modernise operations, improve customer experiences, or accelerate digital growth. Whether you're launching a new product or transforming existing systems, we tailor our approach to your business objectives."
   },
   {
-    question: "Do you work with startups or only enterprises?",
-    answer: "Both. We build MVPs for early-stage startups validating ideas, and ship full-scale platforms for growing companies and enterprises. We adapt our process to match the stage your business is in."
+    question: "Do you offer strategy or only implementation?",
+    answer: "Both. Successful digital transformation requires more than technical execution. We work with clients from discovery and strategy through design, development, deployment, and ongoing optimisation — ensuring every solution aligns with business goals and delivers measurable results."
   },
   {
-    question: "How long does a typical software project take?",
-    answer: "Landing pages take 1–2 weeks, MVPs typically 6–12 weeks, and full custom platforms 3–6 months depending on scope. We share a detailed timeline with every proposal."
+    question: "How long does a typical project take?",
+    answer: null,
+    bullets: [
+      "Business Websites: 4–8 weeks",
+      "Custom Platforms: 8–16 weeks",
+      "SaaS Products: 3–12 months",
+      "Digital Transformation Initiatives: Timeline varies based on business objectives"
+    ],
+    answerPrefix: "Project timelines vary based on scope, complexity, and requirements.",
+    answerSuffix: "Following our discovery process, we provide a clear proposal outlining milestones, deliverables, and timelines."
   },
   {
-    question: "What technologies do you specialize in?",
-    answer: "Our core stack includes React, Next.js, Astro, Node.js, React Native, PostgreSQL, MongoDB, Firebase, AWS and modern AI/ML frameworks. We choose the right stack per project, not a template."
+    question: "Can you help if we are still defining our requirements?",
+    answer: "Absolutely. Many clients approach us with an idea, challenge, or business objective rather than a complete specification. Our discovery process helps define requirements, identify opportunities, evaluate risks, and create a practical roadmap before development begins."
   },
   {
-    question: "How can I get a quote for my project?",
-    answer: "Use our Contact page to share your idea or requirements. You'll receive a tailored proposal with scope, timeline and cost within 24 hours."
+    question: "Do you build custom software or only websites?",
+    answer: null,
+    bullets: [
+      "Corporate Websites",
+      "Customer Portals",
+      "SaaS Platforms",
+      "Business Applications",
+      "AI-Powered Solutions",
+      "Workflow Automation",
+      "Cloud Infrastructure",
+      "System Integrations"
+    ],
+    answerPrefix: "We do both. Our expertise includes:",
+    answerSuffix: "Every solution is tailored to the needs of the organisation rather than relying on one-size-fits-all products."
+  },
+  {
+    question: "What technologies do you work with?",
+    answer: "Our core stack includes React, Next.js, Astro, Node.js, React Native, PostgreSQL, MongoDB, Firebase, and AWS, alongside modern AI/ML frameworks. We select the right stack per project based on your requirements — not a one-size-fits-all template."
+  },
+  {
+    question: "Can you integrate with our existing systems?",
+    answer: "Yes. We regularly work with existing business systems, third-party platforms, CRMs, ERPs, accounting software, payment gateways, and cloud services. Our goal is to create connected digital ecosystems that improve efficiency rather than introducing unnecessary complexity."
+  },
+  {
+    question: "Do you provide AI and automation solutions?",
+    answer: "Yes. We help organisations identify practical opportunities for AI adoption and automation. From intelligent workflows and customer-facing AI experiences to operational automation and data-driven insights, our solutions focus on measurable business impact rather than technology trends."
   },
   {
     question: "Do you provide support after launch?",
-    answer: "Yes. We offer ongoing maintenance, monitoring, updates, and feature development. We can structure a retainer agreement to ensure your product stays healthy and evolving."
+    answer: "Absolutely. Launching a solution is only the beginning. We provide ongoing support, maintenance, security updates, performance monitoring, infrastructure management, and continuous improvements to ensure systems remain efficient, secure, and aligned with evolving business needs."
+  },
+  {
+    question: "Do you work with clients outside the UAE and India?",
+    answer: "Yes. Our team supports businesses across the GCC and international markets. With operations spanning India and the UAE, we combine global expertise with regional understanding to deliver reliable solutions regardless of location."
+  },
+  {
+    question: "How do you ensure project success?",
+    answer: null,
+    bullets: [
+      "Discovery & Planning",
+      "Defined Project Roadmaps",
+      "Regular Progress Updates",
+      "Milestone-Based Delivery",
+      "Quality Assurance & Testing",
+      "Post-Launch Support"
+    ],
+    answerPrefix: "We believe successful projects are built on collaboration, transparency, and clear communication. Every engagement includes:",
+    answerSuffix: "This structured approach helps reduce risk while ensuring alignment throughout the project lifecycle."
+  },
+  {
+    question: "How does pricing work, and how do I get a quote?",
+    answer: "Every project is unique. Pricing depends on scope, complexity, timeline, integrations, and resource requirements. We offer both fixed-scope engagements and flexible delivery models. Use our Contact page to share your idea or requirements — you'll receive a transparent, tailored proposal outlining scope, timeline, and cost."
   }
 ];
 ---
@@ -38,11 +96,23 @@ const faqs = [
           <span>FAQ</span>
         </div>
         <h2 class="faq-title">Questions?<br />We are here to help</h2>
+        {limit && limit < faqs.length && (
+          <div class="faq-header__cta">
+            <p class="faq-subtitle">Have more questions about our services, process, or pricing?</p>
+            <a href="/faq/" class="faq-btn-pill">
+              <span>View all FAQs ({faqs.length})</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+          </div>
+        )}
       </div>
 
       <!-- Right Column Accordion List -->
       <div class="faq-list">
-        {faqs.map((faq, index) => (
+        {(limit ? faqs.slice(0, limit) : faqs).map((faq, index) => (
           <details class="faq-item" name="homepage-faq">
             <summary>
               <span class="faq-item__number">{String(index + 1).padStart(2, '0')}</span>
@@ -54,10 +124,33 @@ const faqs = [
               </span>
             </summary>
             <div class="faq-item__answer">
-              <p>{faq.answer}</p>
+              {faq.answer ? (
+                <p>{faq.answer}</p>
+              ) : (
+                <>
+                  {faq.answerPrefix && <p>{faq.answerPrefix}</p>}
+                  <ul>
+                    {faq.bullets?.map((item) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                  {faq.answerSuffix && <p class="answer-suffix">{faq.answerSuffix}</p>}
+                </>
+              )}
             </div>
           </details>
         ))}
+        {limit && limit < faqs.length && (
+          <div class="faq-list-footer">
+            <a href="/faq/" class="faq-list-link">
+              <span>Explore all {faqs.length} questions</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+        )}
       </div>
 
     </div>
@@ -136,8 +229,66 @@ const faqs = [
     font-size: var(--body-md);
     color: var(--gray-500);
     line-height: 1.6;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     max-width: 380px;
+  }
+
+  .faq-header__cta {
+    margin-top: 1rem;
+  }
+
+  .faq-btn-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.4rem;
+    background: var(--gray-900, #0f172a);
+    color: #ffffff;
+    border-radius: var(--radius-full, 9999px);
+    font-family: var(--font-sans);
+    font-size: var(--body-sm, 0.875rem);
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.1);
+  }
+
+  .faq-btn-pill:hover {
+    background: var(--brand-primary, #464feb);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(70, 79, 235, 0.25);
+    color: #ffffff;
+  }
+
+  .faq-btn-pill svg {
+    transition: transform 0.2s ease;
+  }
+
+  .faq-btn-pill:hover svg {
+    transform: translate(2px, -2px);
+  }
+
+  .faq-list-footer {
+    padding-top: 2rem;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .faq-list-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-sans);
+    font-size: var(--body-md, 1rem);
+    font-weight: 500;
+    color: var(--brand-primary, #464feb);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .faq-list-link:hover {
+    color: var(--brand-primary-hover, #353ecb);
+    gap: 0.75rem;
   }
 
   .faq-cta {
@@ -227,6 +378,24 @@ const faqs = [
     color: var(--text-secondary);
     font-size: var(--body-md);
     line-height: 1.6;
+  }
+
+  .faq-item__answer ul {
+    margin: 0.5rem 0 0;
+    padding-left: 1.25rem;
+    list-style: disc;
+  }
+
+  .faq-item__answer ul li {
+    font-family: var(--font-sans);
+    color: var(--text-secondary);
+    font-size: var(--body-md);
+    line-height: 1.6;
+    margin-bottom: 0.3rem;
+  }
+
+  .faq-item__answer .answer-suffix {
+    margin-top: 0.75rem;
   }
 
   /* Responsive Design */

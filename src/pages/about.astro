@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import PrinciplesSection from '../components/PrinciplesSection.astro';
 import ClientLogosMarquee from '../components/ClientLogosMarquee.astro';
 import TeamSection from '../components/TeamSection.astro';
+import FaqSection from '../components/FaqSection.astro';
 
 const founders = [
   {
@@ -244,6 +245,9 @@ const founders = [
 
   <!-- Three Principles -->
   <PrinciplesSection />
+
+  <!-- FAQ Section (Top 6 FAQs) -->
+  <FaqSection limit={6} />
 
   <!-- High-End Glassmorphic CTA -->
   <section class="section about-cta-section">
