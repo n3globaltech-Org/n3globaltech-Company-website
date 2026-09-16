@@ -3,7 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 
-const lastUpdated = "May 5, 2026";
+const lastUpdated = "September 15, 2026";
+const lastUpdatedISO = "2026-09-15";
 ---
 
 <Layout
@@ -17,7 +18,7 @@ const lastUpdated = "May 5, 2026";
     <div class="container legal-hero__inner">
       <div class="badge badge-sky">Legal</div>
       <h1>Privacy Policy</h1>
-      <p class="legal-hero__meta">Last updated: <time datetime="2026-05-05">{lastUpdated}</time></p>
+      <p class="legal-hero__meta">Last updated: <time datetime={lastUpdatedISO}>{lastUpdated}</time></p>
     </div>
   </section>
 
@@ -25,106 +26,170 @@ const lastUpdated = "May 5, 2026";
     <div class="container legal-narrow">
 
       <p class="legal-lead">
-        N3 Global Tech ("we", "us", "our") respects your privacy. This policy explains what information we collect when you use our website at <a href="https://www.n3global.tech">n3global.tech</a>, how we use it, and the choices you have. We aim to keep this short, clear, and honest.
+        At N3 Global Tech ("N3 Global Tech", "N3", "we", "our", or "us"), we are committed to protecting your privacy and ensuring that personal information is handled responsibly, transparently, and securely.
+        This Privacy Policy explains how we collect, use, store, disclose, transfer, and protect information when you visit <a href="https://www.n3global.tech" target="_blank" rel="noopener noreferrer">www.n3global.tech</a>, communicate with our team, request services, or otherwise interact with us.
+        By using our website or providing information to us, you acknowledge that you have read and understood this Privacy Policy.
       </p>
 
-      <h2>1. Who we are</h2>
+      <h2>1. About N3 Global Tech</h2>
       <p>
-        We are a software development company based in Kannur, Kerala, India, building custom software, SaaS platforms, and digital products for businesses worldwide. For privacy-related questions you can reach us at <a href="mailto:contact@n3global.tech">contact@n3global.tech</a>.
+        N3 Global Tech is a technology company specialising in software engineering, SaaS development, cloud infrastructure, digital platforms, and intelligent automation. Operating across India and the UAE, we help businesses build scalable software solutions, modernise operations, and accelerate growth through technology.
       </p>
+      <p>For privacy-related questions, please contact us at <a href="mailto:contact@n3global.tech">contact@n3global.tech</a>.</p>
 
-      <h2>2. Information we collect</h2>
+      <h2>2. Information We Collect</h2>
+      <p>We may collect information directly from you, automatically through our website, or from legitimate third-party sources where permitted by applicable law.</p>
 
-      <h3>2.1 Information you give us</h3>
-      <p>When you fill out our <a href="/contact/">contact form</a>, we collect:</p>
+      <h3>2.1 Information You Provide</h3>
+      <p>We may collect information you voluntarily provide, including:</p>
       <ul>
-        <li>First and last name</li>
-        <li>Email address</li>
-        <li>Company name (optional)</li>
-        <li>The message or project details you share</li>
-        <li>Whether you have requested an NDA before discussions</li>
+        <li>Full name, email address, phone number</li>
+        <li>Company name and job title</li>
+        <li>Project requirements and business information relevant to an engagement</li>
+        <li>Communications and correspondence, including meeting and proposal requests</li>
+        <li>Any additional information you choose to provide</li>
       </ul>
-      <p>If you email us directly at <a href="mailto:contact@n3global.tech">contact@n3global.tech</a> or call us, the contents of that communication are also stored as part of our normal correspondence.</p>
+      <p>Providing personal information is voluntary. However, certain information may be necessary for us to respond to inquiries or provide requested services.</p>
 
-      <h3>3.2 Information collected automatically</h3>
+      <h3>2.2 Information Collected Automatically</h3>
       <p>
-        Like most websites, when you visit n3global.tech our hosting provider (Vercel) and our content delivery network may automatically log standard server data such as your IP address, browser type, operating system, referring URL, the pages you view, and timestamps. This information is used for security, debugging, and basic traffic analysis. It is not tied to your name unless you also submit our contact form.
+        When you access our website, our hosting provider (Vercel) and content delivery network may automatically collect information such as: IP address, browser type and version, device and operating system information, geographic region, referring website, pages visited, and date and time of access. This information helps us maintain website security, improve performance, and enhance the user experience. It is not tied to your name unless you also submit a contact form.
       </p>
 
-      <h3>3.3 Cookies</h3>
+      <h3>2.3 Cookies and Similar Technologies</h3>
       <p>
-        We use a minimal set of essential cookies required for the site to function (for example, to remember whether you have dismissed a notice). We do not currently use third-party advertising cookies or behavioral tracking. For details, please see our <a href="/cookie-policy/">Cookie Policy</a>.
+        We use a minimal set of cookies and similar technologies to ensure website functionality, remember user preferences, improve performance, and enhance security. You may control or disable cookies through your browser settings. Certain website features may not function correctly if cookies are disabled. For additional details, please refer to our <a href="/cookie-policy/">Cookie Policy</a>.
       </p>
 
-      <h2>3. How we use your information</h2>
-      <p>We use the information you give us only for these purposes:</p>
+      <h2>3. How We Use Your Information</h2>
+      <p>We use information for legitimate business purposes, including:</p>
       <ul>
-        <li>To respond to your enquiry and prepare a project proposal</li>
-        <li>To communicate with you about the project, contracts, and follow-up</li>
-        <li>To improve the website (using aggregated, non-identifying analytics)</li>
-        <li>To meet our legal and tax obligations</li>
+        <li>Responding to inquiries and scheduling consultations</li>
+        <li>Preparing proposals and project estimates</li>
+        <li>Delivering services and managing client relationships</li>
+        <li>Improving our website and services (using aggregated, non-identifying analytics)</li>
+        <li>Maintaining system security and preventing fraud or unauthorised activity</li>
+        <li>Fulfilling legal, tax, and regulatory obligations</li>
       </ul>
-      <p>We do not sell your personal information. We do not share it with advertisers or data brokers.</p>
+      <p><strong>We do not sell personal information.</strong> We do not share it with advertisers or data brokers.</p>
 
-      <h2>4. When we share information</h2>
-      <p>We only share your information with trusted service providers who help us operate, and only to the minimum extent required:</p>
+      <h2>4. Legal Basis for Processing</h2>
+      <p>Where required by applicable law (including the EU GDPR and India's DPDP Act 2023), we process personal information on one or more of the following legal grounds:</p>
       <ul>
-        <li><strong>Hosting:</strong> Vercel Inc., for serving the website</li>
-        <li><strong>Email:</strong> our email provider, for receiving and storing the messages you send</li>
-        <li><strong>Legal compliance:</strong> if required by law, court order, or to protect our rights</li>
+        <li><strong>Your consent</strong> — where you have freely given it</li>
+        <li><strong>Performance of a contract</strong> — where processing is necessary to deliver agreed services</li>
+        <li><strong>Legitimate business interests</strong> — such as improving our services or maintaining security</li>
+        <li><strong>Compliance with legal obligations</strong> — where required by law</li>
+        <li><strong>Protection of legal rights</strong> — to establish, exercise, or defend legal claims</li>
       </ul>
-      <p>
-        These providers are contractually bound to handle your information securely and not use it for any other purpose.
-      </p>
 
-      <h2>5. How long we keep your information</h2>
-      <p>
-        Contact form submissions and email correspondence are retained for as long as we maintain a working or potential working relationship with you, plus a reasonable period afterwards for record-keeping and tax purposes (typically up to 7 years, in line with Indian tax regulations). Server logs are retained for up to 90 days unless required for security investigations.
-      </p>
-
-      <h2>6. Your rights</h2>
-      <p>Depending on where you are based, you may have the right to:</p>
+      <h2>5. Consent</h2>
+      <p>Where required by law, N3 Global Tech obtains consent before collecting or processing personal information. Consent may be obtained when you:</p>
       <ul>
-        <li><strong>Access</strong> the personal information we hold about you</li>
-        <li><strong>Correct</strong> inaccurate or incomplete information</li>
-        <li><strong>Delete</strong> your information ("right to be forgotten")</li>
-        <li><strong>Restrict or object</strong> to certain processing</li>
-        <li><strong>Receive a copy</strong> of your data in a portable format</li>
-        <li><strong>Withdraw consent</strong> at any time, where processing is based on consent</li>
+        <li>Submit a contact form through our website</li>
+        <li>Request a consultation, proposal, or service</li>
+        <li>Subscribe to updates or communications</li>
+        <li>Contact us via email, phone, or other channels</li>
+        <li>Accept non-essential cookies through website preferences</li>
       </ul>
-      <p>
-        To exercise any of these rights, email us at <a href="mailto:contact@n3global.tech">contact@n3global.tech</a>. We will respond within 30 days. These rights are recognized under India's Digital Personal Data Protection Act (DPDP Act, 2023) and the EU's General Data Protection Regulation (GDPR) where applicable.
-      </p>
+      <p>By providing information through our website or communicating with us directly, you consent to the collection and use of your information as described in this Privacy Policy. If we intend to use your information for purposes materially different from those originally disclosed, we will obtain additional consent where required.</p>
 
-      <h2>7. Security</h2>
-      <p>
-        We use industry-standard technical and organizational safeguards (TLS encryption in transit, access controls, and least-privilege access policies internally) to protect your information. No method of transmission over the internet is 100% secure, but we work hard to use trusted infrastructure and modern practices.
-      </p>
-
-      <h2>8. International transfers</h2>
-      <p>
-        We are based in India. If you are visiting from outside India, please be aware that your information may be processed and stored on servers located in different countries (including India and the United States, where Vercel operates). By using our site or contacting us, you consent to such transfers, which are subject to appropriate safeguards.
-      </p>
-
-      <h2>9. Children's privacy</h2>
-      <p>
-        Our website is not directed at children under 13. We do not knowingly collect personal information from children. If you believe a child has submitted information to us, please contact us so we can delete it.
-      </p>
-
-      <h2>10. Changes to this policy</h2>
-      <p>
-        We may update this policy from time to time. The "Last updated" date at the top will reflect any changes. For material changes, we will use reasonable means (such as a notice on the website or by email if we have it) to inform you.
-      </p>
-
-      <h2>11. Contact us</h2>
-      <p>
-        Questions, concerns, or requests about your personal information? Reach us at:
-      </p>
+      <h2>6. Withdrawal of Consent</h2>
+      <p>Where processing is based on consent, you may withdraw that consent at any time by:</p>
       <ul>
-        <li>Email: <a href="mailto:contact@n3global.tech">contact@n3global.tech</a></li>
-        <li>Phone: <a href="tel:+919188374340">+91 91883 74340</a></li>
-        <li>Postal: N3 Global Tech, Kannur, Kerala, India</li>
+        <li>Emailing us at <a href="mailto:contact@n3global.tech">contact@n3global.tech</a></li>
+        <li>Requesting removal from communications</li>
+        <li>Requesting deletion of personal information where legally permitted</li>
       </ul>
+      <p>Withdrawal of consent does not affect the lawfulness of processing carried out before consent was withdrawn. Certain information may be retained where required to meet legal obligations, resolve disputes, or maintain business records.</p>
+
+      <h2>7. Information Sharing and Disclosure</h2>
+      <p>We do not sell, rent, or trade personal information. We only share information with trusted third-party providers who help us operate our business, and only to the minimum extent required:</p>
+      <ul>
+        <li><strong>Hosting &amp; Cloud Providers:</strong> Vercel Inc., for website hosting, infrastructure, and content delivery</li>
+        <li><strong>Communication &amp; Collaboration Providers:</strong> Platforms used for email, scheduling, and project collaboration</li>
+        <li><strong>Professional Advisors:</strong> Legal, accounting, and compliance firms supporting our operations</li>
+        <li><strong>Regulatory Authorities:</strong> Government, regulatory, or law enforcement authorities where disclosure is required by law</li>
+      </ul>
+      <p>All third parties are contractually expected to maintain appropriate safeguards and process personal information only for authorised purposes.</p>
+
+      <h2>8. International Data Transfers</h2>
+      <p>
+        We are based in India. As a company operating across multiple jurisdictions, N3 Global Tech may process and store information in countries where our personnel, service providers, or infrastructure providers operate — including India and the United States (where Vercel operates). By interacting with N3 Global Tech, you acknowledge that your information may be transferred internationally. Where required, we implement reasonable safeguards to protect personal information during such transfers.
+      </p>
+
+      <h2>9. Data Retention</h2>
+      <p>We retain personal information only for as long as necessary to deliver services, maintain business records, fulfil contractual obligations, and comply with legal requirements. In practice:</p>
+      <ul>
+        <li>Contact form submissions and correspondence are retained for the duration of our working relationship, plus up to 7 years for record-keeping and tax purposes (in line with Indian tax regulations)</li>
+        <li>Server logs are retained for up to 90 days unless required for security investigations</li>
+      </ul>
+      <p>When information is no longer required, it is securely deleted, anonymised, or otherwise disposed of in accordance with applicable legal requirements.</p>
+
+      <h2>10. Data Security</h2>
+      <p>We maintain administrative, technical, and organisational safeguards designed to protect information against unauthorised access, disclosure, alteration, misuse, loss, or destruction. Security measures include:</p>
+      <ul>
+        <li>TLS encryption in transit</li>
+        <li>Secure cloud infrastructure and access controls</li>
+        <li>Authentication procedures and least-privilege access policies</li>
+        <li>Regular software updates and security monitoring</li>
+      </ul>
+      <p>While we take reasonable precautions, no transmission or storage system can be guaranteed to be completely secure.</p>
+
+      <h2>11. Your Privacy Rights</h2>
+      <p>Depending on your location and applicable privacy laws (including India's DPDP Act 2023 and the EU's GDPR), you may have the right to:</p>
+      <ul>
+        <li><strong>Access</strong> — obtain a copy of the personal information we hold about you</li>
+        <li><strong>Correct</strong> — update inaccurate or incomplete information</li>
+        <li><strong>Delete</strong> — request deletion of your information ("right to be forgotten")</li>
+        <li><strong>Restrict or object</strong> to certain processing activities</li>
+        <li><strong>Data portability</strong> — receive your data in a structured, portable format</li>
+        <li><strong>Withdraw consent</strong> at any time where processing is based on consent</li>
+        <li>File complaints with relevant regulatory authorities</li>
+      </ul>
+      <p>Certain rights may be subject to legal or regulatory limitations.</p>
+
+      <h2>12. How to Exercise Your Rights</h2>
+      <p>To exercise any privacy rights, please contact us at <a href="mailto:contact@n3global.tech">contact@n3global.tech</a>. Please include your full name, contact information, a description of your request, and any information that helps us identify your records. We may request identity verification before fulfilling certain requests. We will respond within 30 days and in accordance with applicable law.</p>
+
+      <h2>13. GDPR Compliance</h2>
+      <p>
+        If you are located in the European Economic Area (EEA), the United Kingdom, or Switzerland, N3 Global Tech processes personal information in accordance with applicable data protection laws, including the General Data Protection Regulation (GDPR). Where GDPR applies, you have additional rights including the right of access, rectification, erasure, restriction of processing, data portability, objection, withdrawal of consent, and the right to lodge a complaint with a supervisory authority. We will honour applicable rights in accordance with relevant legal requirements.
+      </p>
+
+      <h2>14. Global Operations</h2>
+      <p>
+        N3 Global Tech serves clients across India, the UAE, and international markets. For organisations across the GCC, we also operate through <strong>Klay Agency</strong>, our digital transformation and innovation brand. This allows us to combine technology expertise, cloud infrastructure, software engineering, and strategic consulting through a unified team operating across multiple markets.
+      </p>
+
+      <h2>15. Third-Party Websites</h2>
+      <p>
+        Our website may contain links to third-party websites, services, applications, or resources. N3 Global Tech is not responsible for the privacy practices, content, security, or policies of external websites. We encourage users to review the privacy policies of any third-party websites they visit.
+      </p>
+
+      <h2>16. Children's Privacy</h2>
+      <p>
+        Our services are intended for businesses and professional users. We do not knowingly collect personal information from children. If we become aware that information has been collected from a child in violation of applicable law, we will take reasonable steps to remove such information promptly. If you believe a child has submitted information to us, please contact us at <a href="mailto:contact@n3global.tech">contact@n3global.tech</a>.
+      </p>
+
+      <h2>17. Changes to This Privacy Policy</h2>
+      <p>
+        We may update this Privacy Policy periodically to reflect changes in our business operations, technology, legal requirements, or industry standards. Any updates will be published on this page with a revised "Last Updated" date. For material changes, we will use reasonable means (such as a notice on the website or by email) to inform you. Continued use of our website after updates constitutes acceptance of the revised Privacy Policy.
+      </p>
+
+      <h2>18. Contact Us</h2>
+      <p>If you have questions regarding this Privacy Policy, your personal information, or our privacy practices, please contact us:</p>
+      <ul>
+        <li><strong>Company:</strong> N3 Global Tech</li>
+        <li><strong>Email:</strong> <a href="mailto:contact@n3global.tech">contact@n3global.tech</a></li>
+        <li><strong>Phone:</strong> <a href="tel:+919188374340">+91 91883 74340</a></li>
+        <li><strong>Website:</strong> <a href="https://www.n3global.tech" target="_blank" rel="noopener noreferrer">www.n3global.tech</a></li>
+        <li><strong>Address:</strong> N3 Global Tech, Kannur, Kerala, India</li>
+      </ul>
+
+      <p class="legal-related">
+        See also: <a href="/cookie-policy/">Cookie Policy</a> · <a href="/terms-of-service/">Terms of Service</a>
+      </p>
 
     </div>
   </article>
@@ -194,8 +259,15 @@ const lastUpdated = "May 5, 2026";
     margin-bottom: 0.5rem;
   }
   .legal-narrow a {
-    color: var(--sky-700);
+    color: var(--sky-700, #0369a1);
     text-decoration: underline;
     text-underline-offset: 3px;
+  }
+  .legal-related {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--gray-100);
+    color: var(--gray-500);
+    font-size: 0.95rem;
   }
 </style>

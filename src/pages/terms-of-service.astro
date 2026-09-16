@@ -3,7 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 
-const lastUpdated = "May 5, 2026";
+const lastUpdated = "September 15, 2026";
+const lastUpdatedISO = "2026-09-15";
 ---
 
 <Layout
@@ -17,7 +18,7 @@ const lastUpdated = "May 5, 2026";
     <div class="container legal-hero__inner">
       <div class="badge badge-sky">Legal</div>
       <h1>Terms of Service</h1>
-      <p class="legal-hero__meta">Last updated: <time datetime="2026-05-05">{lastUpdated}</time></p>
+      <p class="legal-hero__meta">Last updated: <time datetime={lastUpdatedISO}>{lastUpdated}</time></p>
     </div>
   </section>
 
@@ -25,84 +26,177 @@ const lastUpdated = "May 5, 2026";
     <div class="container legal-narrow">
 
       <p class="legal-lead">
-        These terms govern your use of the N3 Global Tech website at <a href="https://www.n3global.tech">n3global.tech</a>. By accessing or using the website, you agree to these terms. If you don't agree, please don't use the site. Specific work we do for you (custom software development, SaaS development, consulting) is governed by a separate written agreement, not by these terms.
+        Welcome to N3 Global Tech ("N3 Global Tech", "N3", "we", "our", or "us").
+        These Terms of Service ("Terms") govern your access to and use of <a href="https://www.n3global.tech" target="_blank" rel="noopener noreferrer">www.n3global.tech</a> and any related websites, content, communications, and services made available by N3 Global Tech.
+        By accessing or using our website, you agree to be bound by these Terms. If you do not agree, please discontinue use of the website.
+      </p>
+      <p class="legal-lead--note">
+        <strong>Important:</strong> These Terms govern only the use of our website. Any software development, consulting, SaaS, cloud, AI, automation, managed services, or other professional services provided by N3 Global Tech are governed by separate written agreements between N3 Global Tech and its clients.
       </p>
 
-      <h2>1. Who we are</h2>
+      <h2>1. About N3 Global Tech</h2>
       <p>
-        N3 Global Tech is a software development company based in Kannur, Kerala, India. You can contact us at <a href="mailto:contact@n3global.tech">contact@n3global.tech</a> or <a href="tel:+919188374340">+91 91883 74340</a>.
+        N3 Global Tech is a technology company specialising in software engineering, SaaS development, cloud infrastructure, digital platforms, and intelligent automation. We serve organisations across India, the UAE, and international markets through a multidisciplinary team focused on building scalable technology solutions.
       </p>
+      <p>For questions regarding these Terms, please contact us at <a href="mailto:contact@n3global.tech">contact@n3global.tech</a> or visit <a href="https://www.n3global.tech" target="_blank" rel="noopener noreferrer">www.n3global.tech</a>.</p>
 
-      <h2>2. Use of the website</h2>
-      <p>You may use this website for lawful purposes only. You agree not to:</p>
+      <h2>2. Acceptance of Terms</h2>
+      <p>By accessing, browsing, or using this website, you confirm that:</p>
       <ul>
-        <li>Use the site in any way that breaks applicable law or regulation</li>
-        <li>Attempt to gain unauthorized access to any portion of the site, our servers, or related systems</li>
-        <li>Interfere with the site's functionality, including by introducing malware or running automated scrapers without permission</li>
-        <li>Misrepresent your identity, including impersonating a person or organization</li>
-        <li>Use the site to send unsolicited commercial communications</li>
+        <li>You have the legal capacity to enter into these Terms.</li>
+        <li>You will comply with all applicable laws and regulations.</li>
+        <li>You will use the website only for lawful purposes.</li>
+        <li>You accept and agree to be bound by these Terms.</li>
+      </ul>
+      <p>If you are using this website on behalf of an organisation, you represent and warrant that you have the authority to bind that organisation to these Terms.</p>
+
+      <h2>3. Permitted Use</h2>
+      <p>You may access and use the website solely for legitimate business, informational, and non-commercial purposes. You agree not to:</p>
+      <ul>
+        <li>Violate any applicable law or regulation.</li>
+        <li>Attempt to gain unauthorised access to systems, servers, networks, applications, or accounts.</li>
+        <li>Interfere with the security, performance, availability, or functionality of the website.</li>
+        <li>Use bots, scrapers, crawlers, spiders, automated scripts, or data extraction tools without prior written authorisation.</li>
+        <li>Copy, reproduce, modify, distribute, republish, sell, license, or exploit website content without permission.</li>
+        <li>Introduce malicious software, malware, ransomware, spyware, viruses, or harmful code.</li>
+        <li>Reverse engineer, probe, or test vulnerabilities of any system associated with the website.</li>
+        <li>Impersonate any individual, company, or organisation.</li>
+        <li>Use the website for unlawful, fraudulent, deceptive, harmful, or abusive activities.</li>
+        <li>Send unsolicited commercial communications through or in connection with the website.</li>
+      </ul>
+      <p>We reserve the right to restrict, suspend, or terminate access where these Terms are violated.</p>
+
+      <h2>4. User Submissions</h2>
+      <p>Any information submitted through our website, including contact forms, inquiry forms, proposal requests, meeting requests, and communications, must be accurate and truthful. By submitting information, you represent and warrant that:</p>
+      <ul>
+        <li>The information provided is accurate and complete.</li>
+        <li>You have the authority to provide such information.</li>
+        <li>The information does not violate any third-party rights.</li>
+        <li>The information complies with applicable laws and regulations.</li>
+        <li>The information does not contain malicious code or unauthorised confidential information.</li>
+      </ul>
+      <p>You remain solely responsible for all information submitted through the website.</p>
+
+      <h2>5. User Responsibilities</h2>
+      <p>By accessing or using the website, you agree to:</p>
+      <ul>
+        <li>Provide accurate, complete, and current information.</li>
+        <li>Use the website only for lawful and legitimate purposes.</li>
+        <li>Respect the intellectual property rights of N3 Global Tech and third parties.</li>
+        <li>Avoid activities that may disrupt website operations.</li>
+        <li>Protect any information accessed through the website from unauthorised use.</li>
+        <li>Not misuse the website, content, systems, or infrastructure.</li>
+        <li>Comply with all applicable local, national, and international laws.</li>
       </ul>
 
-      <h2>3. Intellectual property</h2>
+      <h2>6. Data Privacy</h2>
       <p>
-        All content on this website (including text, graphics, logos, code, images, and the overall design) is owned by N3 Global Tech or our licensors and is protected by copyright, trademark, and other intellectual property laws. You may view, share, and link to our content for personal, non-commercial use, but you may not copy, modify, distribute, or republish it without our written permission.
+        N3 Global Tech is committed to protecting personal information and handling data responsibly. Any personal information collected through the website is processed in accordance with our <a href="/privacy-policy/">Privacy Policy</a>, which describes what information we collect, how it is used and protected, how long it is retained, your privacy rights, and how to contact us regarding privacy matters.
       </p>
-      <p>
-        The "N3 Global Tech" name, the N3 logo, and the names of our products (N3 ServiceBook, N3 FitBook, N3 BusinessBook) are trademarks of N3 Global Tech.
-      </p>
+      <p>By accessing the website or submitting information through it, you acknowledge that your personal information may be collected, processed, stored, and transferred in accordance with our Privacy Policy. Our Privacy Policy forms an integral part of these Terms.</p>
 
-      <h2>4. Third-party links</h2>
-      <p>
-        Our website may link to external sites we don't operate (for example, our clients' production websites or our LinkedIn profile). We are not responsible for the content, privacy practices, or security of those sites. Use them at your own discretion.
-      </p>
-
-      <h2>5. No warranty</h2>
-      <p>
-        The website is provided "as is" and "as available," without warranties of any kind, express or implied, including warranties of merchantability, fitness for a particular purpose, or non-infringement. We do not guarantee that the site will be uninterrupted, error-free, or secure, or that any information on it is current or accurate. Any reliance you place on the site's content is at your own risk.
-      </p>
-      <p>
-        For paid engagements (custom development, SaaS builds, consulting), the warranties and service levels are defined in your specific contract with us, not here.
-      </p>
-
-      <h2>6. Limitation of liability</h2>
-      <p>
-        To the fullest extent permitted by law, N3 Global Tech, its founders, employees, and affiliates will not be liable for any indirect, incidental, special, consequential, or punitive damages (including lost profits, lost data, or business interruption) arising out of or related to your use of, or inability to use, this website. Our total liability for any direct claim related to this website will not exceed ₹5,000 (five thousand Indian rupees) or the equivalent in your local currency.
-      </p>
-
-      <h2>7. Indemnification</h2>
-      <p>
-        You agree to indemnify and hold N3 Global Tech harmless from any claims, losses, liabilities, damages, costs, or expenses (including reasonable attorney's fees) arising out of your breach of these terms or your misuse of the website.
-      </p>
-
-      <h2>8. Termination</h2>
-      <p>
-        We may suspend or terminate your access to the website at any time, with or without notice, if we believe you have violated these terms or applicable law.
-      </p>
-
-      <h2>9. Governing law</h2>
-      <p>
-        These terms are governed by the laws of India. Any disputes arising from these terms or your use of the website will be subject to the exclusive jurisdiction of the courts in Kannur, Kerala, India.
-      </p>
-
-      <h2>10. Changes to these terms</h2>
-      <p>
-        We may update these terms from time to time. Updated terms will be posted here with a revised "Last updated" date. By continuing to use the site after changes are posted, you agree to the revised terms.
-      </p>
-
-      <h2>11. Severability</h2>
-      <p>
-        If any provision of these terms is found to be unenforceable, the remaining provisions will continue in full force and effect.
-      </p>
-
-      <h2>12. Contact us</h2>
-      <p>
-        For any questions about these terms, contact us at:
-      </p>
+      <h2>7. Intellectual Property Rights</h2>
+      <p>Unless otherwise stated, all content available on this website is owned by or licensed to N3 Global Tech and protected under applicable intellectual property laws. This includes:</p>
       <ul>
-        <li>Email: <a href="mailto:contact@n3global.tech">contact@n3global.tech</a></li>
-        <li>Phone: <a href="tel:+919188374340">+91 91883 74340</a></li>
-        <li>Postal: N3 Global Tech, Kannur, Kerala, India</li>
+        <li>Text, graphics, logos, icons, and visual assets</li>
+        <li>Website design and source code</li>
+        <li>Product information and software documentation</li>
+        <li>Marketing materials</li>
       </ul>
+      <p>The following names and associated branding are proprietary assets of N3 Global Tech: <strong>N3 Global Tech</strong>, <strong>N3 FitBook</strong>, <strong>N3 ServiceBook</strong>, and <strong>N3 BusinessBook</strong>.</p>
+      <p>Nothing on this website grants any right, title, interest, license, or ownership in any intellectual property without prior written authorisation.</p>
+
+      <h2>8. Website Content Disclaimer</h2>
+      <p>Information provided on this website is for general informational purposes only. While we strive to maintain accurate and current information, we do not guarantee that website content is accurate, complete, current, error-free, or suitable for any specific purpose.</p>
+      <p>Nothing on this website constitutes legal, financial, accounting, tax, investment, or professional advice. Any reliance on information provided through this website is at your own risk.</p>
+
+      <h2>9. Third-Party Websites and Services</h2>
+      <p>
+        Our website may contain links to third-party websites, applications, services, or resources. These links are provided solely as a convenience. N3 Global Tech does not endorse, control, or assume responsibility for third-party content, security practices, privacy practices, availability of services, or accuracy of information. Access to third-party websites is entirely at your own risk.
+      </p>
+
+      <h2>10. No Warranty</h2>
+      <p>
+        The website is provided on an "as is" and "as available" basis. To the fullest extent permitted by law, N3 Global Tech disclaims all warranties, whether express, implied, statutory, or otherwise, including warranties of merchantability, fitness for a particular purpose, non-infringement, availability, reliability, security, and accuracy.
+      </p>
+      <p>We do not guarantee that the website will always be available, that content will always be current or accurate, that operation will be uninterrupted, that defects will be corrected immediately, or that the website will be free from harmful components.</p>
+
+      <h2>11. Limitation of Liability</h2>
+      <p>
+        To the fullest extent permitted by applicable law, N3 Global Tech, its founders, employees, contractors, affiliates, representatives, and partners shall not be liable for any indirect, special, incidental, consequential, or punitive damages — including business interruption, lost profits, lost revenue, lost data, or loss of goodwill — arising from or related to your use of, or inability to use, the website.
+      </p>
+      <p>In no event shall N3 Global Tech's total liability arising from the website exceed the greater of: <strong>(a) USD $100</strong>; or <strong>(b) the minimum amount permitted by applicable law</strong>.</p>
+
+      <h2>12. Indemnification</h2>
+      <p>
+        You agree to defend, indemnify, and hold harmless N3 Global Tech, its founders, employees, contractors, affiliates, partners, and representatives from and against all claims, liabilities, damages, losses, expenses, and costs — including reasonable legal fees — arising from your violation of these Terms, misuse of the website, violation of applicable law, or infringement of third-party rights.
+      </p>
+
+      <h2>13. Force Majeure</h2>
+      <p>N3 Global Tech shall not be responsible for delays, interruptions, or failures resulting from circumstances beyond our reasonable control, including:</p>
+      <ul>
+        <li>Natural disasters, floods, fires, earthquakes, or pandemics</li>
+        <li>Government actions, war, or civil unrest</li>
+        <li>Internet outages or cybersecurity incidents</li>
+        <li>Utility failures or labor disputes</li>
+        <li>Failures of third-party providers</li>
+      </ul>
+
+      <h2>14. Availability and Modifications</h2>
+      <p>We reserve the right to modify website content, add or remove functionality, suspend services, restrict access, or discontinue any portion of the website at any time without prior notice. We are not obligated to maintain any particular feature, service, or functionality indefinitely.</p>
+
+      <h2>15. Termination</h2>
+      <p>We may suspend, restrict, or terminate access to the website at any time, with or without notice, if we reasonably believe you have violated these Terms, your use presents security risks, your use may cause harm to N3 Global Tech or third parties, or such action is required by law. Termination does not affect rights or obligations accrued before termination.</p>
+
+      <h2>16. Dispute Resolution</h2>
+      <p>Before initiating any formal legal proceeding, both parties agree to make reasonable efforts to resolve disputes through good-faith discussions.</p>
+      <h3>Informal Resolution</h3>
+      <p>If a dispute arises out of or relates to these Terms, the website, or the relationship between the parties, the parties shall first attempt to resolve the matter through direct communication and negotiation.</p>
+      <h3>Escalation</h3>
+      <p>If the dispute cannot be resolved within thirty (30) days of written notice, either party may pursue available legal remedies in accordance with the governing law and jurisdiction provisions of these Terms.</p>
+      <h3>Injunctive Relief</h3>
+      <p>Nothing in this section prevents either party from seeking injunctive or equitable relief to prevent irreparable harm, or to protect intellectual property rights.</p>
+
+      <h2>17. Relationship of Parties</h2>
+      <p>Nothing in these Terms creates or shall be interpreted as creating a partnership, joint venture, agency relationship, employment relationship, or fiduciary relationship between you and N3 Global Tech.</p>
+
+      <h2>18. Electronic Communications</h2>
+      <p>By using the website, submitting forms, sending emails, or otherwise communicating with N3 Global Tech electronically, you consent to receive communications from us electronically. You agree that any notices, disclosures, agreements, records, and other communications provided electronically satisfy any legal requirement that such communications be in writing, unless applicable law requires otherwise.</p>
+
+      <h2>19. Export Control &amp; Sanctions Compliance</h2>
+      <p>You agree to comply with all applicable export control, sanctions, and international trade laws when using this website. You represent and warrant that you are not located in a country subject to comprehensive sanctions or trade restrictions, are not listed on any government-sanctioned or restricted-party list, and will not use the website in violation of applicable export control or trade laws. N3 Global Tech reserves the right to restrict or terminate access where necessary to comply with legal or regulatory obligations.</p>
+
+      <h2>20. Entire Agreement</h2>
+      <p>
+        These Terms of Service, together with our <a href="/privacy-policy/">Privacy Policy</a> and any policies expressly referenced herein, constitute the entire agreement between you and N3 Global Tech regarding the use of this website. These Terms supersede all prior communications, understandings, representations, or agreements relating to website usage.
+      </p>
+      <p>Any software development, consulting, SaaS, cloud services, managed services, or professional engagements provided by N3 Global Tech remain subject exclusively to separate written agreements between N3 Global Tech and its clients.</p>
+
+      <h2>21. Governing Law</h2>
+      <p>These Terms shall be governed by and interpreted in accordance with the laws of India, without regard to conflict-of-law principles.</p>
+
+      <h2>22. Jurisdiction</h2>
+      <p>Any dispute, claim, controversy, or cause of action arising out of or relating to these Terms, the website, or the relationship between the parties shall be subject to the exclusive jurisdiction of the competent courts of Kerala, India.</p>
+
+      <h2>23. Severability</h2>
+      <p>If any provision of these Terms is determined to be unlawful, invalid, or unenforceable, that provision shall be deemed severed without affecting the validity or enforceability of the remaining provisions.</p>
+
+      <h2>24. Changes to These Terms</h2>
+      <p>We may update these Terms periodically to reflect business developments, website updates, security enhancements, legal requirements, or service improvements. Updated Terms will be published on this page with a revised "Last Updated" date. Your continued use of the website after updates are published constitutes acceptance of the revised Terms.</p>
+
+      <h2>25. Contact Us</h2>
+      <p>If you have questions regarding these Terms of Service, please contact us:</p>
+      <ul>
+        <li><strong>Company:</strong> N3 Global Tech</li>
+        <li><strong>Email:</strong> <a href="mailto:contact@n3global.tech">contact@n3global.tech</a></li>
+        <li><strong>Phone:</strong> <a href="tel:+919188374340">+91 91883 74340</a></li>
+        <li><strong>Website:</strong> <a href="https://www.n3global.tech" target="_blank" rel="noopener noreferrer">www.n3global.tech</a></li>
+        <li><strong>Address:</strong> N3 Global Tech, Kannur, Kerala, India</li>
+      </ul>
+
+      <p class="legal-related">
+        See also: <a href="/privacy-policy/">Privacy Policy</a> · <a href="/cookie-policy/">Cookie Policy</a>
+      </p>
 
     </div>
   </article>
@@ -141,9 +235,19 @@ const lastUpdated = "May 5, 2026";
     font-size: 1.1rem;
     line-height: 1.8;
     color: var(--gray-700);
-    margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
     border-bottom: 1px solid var(--gray-100);
+  }
+  .legal-lead--note {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--gray-600, #4b5563);
+    margin-bottom: 2rem;
+    padding: 0.75rem 1rem;
+    background: var(--gray-50, #f8fafc);
+    border-left: 3px solid var(--sky-400, #38bdf8);
+    border-radius: 0 4px 4px 0;
   }
   .legal-narrow h2 {
     font-size: 1.4rem;
@@ -151,6 +255,12 @@ const lastUpdated = "May 5, 2026";
     margin: 2.5rem 0 0.75rem;
     color: var(--gray-900);
     letter-spacing: -0.01em;
+  }
+  .legal-narrow h3 {
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin: 1.25rem 0 0.5rem;
+    color: var(--gray-800, #1f2937);
   }
   .legal-narrow p,
   .legal-narrow ul {
@@ -166,8 +276,15 @@ const lastUpdated = "May 5, 2026";
     margin-bottom: 0.5rem;
   }
   .legal-narrow a {
-    color: var(--sky-700);
+    color: var(--sky-700, #0369a1);
     text-decoration: underline;
     text-underline-offset: 3px;
+  }
+  .legal-related {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--gray-100);
+    color: var(--gray-500);
+    font-size: 0.95rem;
   }
 </style>
