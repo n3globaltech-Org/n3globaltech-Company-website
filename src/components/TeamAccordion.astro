@@ -26,7 +26,9 @@ const members = [
 <section class="team-accordion" id="team" aria-labelledby="team-accordion-title">
   <div class="container team-accordion__inner">
     <div class="team-accordion__header">
-      <span class="team-accordion__badge">Our Team</span>
+      <div class="team-accordion__kicker">
+        <span class="team-accordion__kicker-sq"></span> OUR TEAM
+      </div>
       <h2 class="team-accordion__title" id="team-accordion-title">The minds behind N3</h2>
       <p class="team-accordion__subtitle">A hands-on team focused on results, not volume.</p>
     </div>
@@ -34,7 +36,7 @@ const members = [
     <div class="team-accordion__gallery" data-team-gallery>
       {members.map((member, idx) => (
         <div
-          class={`team-accordion__card ${idx === 0 ? "is-active" : ""}`}
+          class={`team-accordion__card ${idx === 0 ? "is-active" : ""} ${idx >= 2 ? "team-accordion__card--desktop-only" : ""}`}
           data-team-card
           data-index={idx}
           role="button"
@@ -62,6 +64,15 @@ const members = [
           <span class="team-accordion__vertical" aria-hidden="true">{member.name}</span>
         </div>
       ))}
+
+      <a
+        href="/about/"
+        class="team-accordion__card team-accordion__card--about team-accordion__card--mobile-only"
+        aria-label="Meet the full team on the About page"
+      >
+        <div class="team-accordion__about-bg" aria-hidden="true"></div>
+        <span class="team-accordion__vertical">Meet the team</span>
+      </a>
     </div>
   </div>
 </section>
@@ -69,22 +80,39 @@ const members = [
 <script>
   function initTeamAccordion() {
     const gallery = document.querySelector("[data-team-gallery]");
-    if (!gallery || gallery instanceof HTMLElement === false) return;
+    if (!(gallery instanceof HTMLElement)) return;
     if (gallery.dataset.ready === "true") return;
     gallery.dataset.ready = "true";
 
     const cards = Array.from(gallery.querySelectorAll("[data-team-card]"));
+    const mobileQuery = window.matchMedia("(max-width: 860px)");
+
+    function visibleCards() {
+      return cards.filter((card) => {
+        if (!(card instanceof HTMLElement)) return false;
+        return window.getComputedStyle(card).display !== "none";
+      });
+    }
 
     function activate(index: number) {
-      cards.forEach((card, idx) => {
-        const isActive = idx === index;
+      const next = visibleCards();
+      const allowed = new Set(next.map((card) => Number(card.getAttribute("data-index") || "0")));
+      if (!allowed.has(index)) {
+        index = Number(next[0]?.getAttribute("data-index") || "0");
+      }
+
+      cards.forEach((card) => {
+        const cardIndex = Number(card.getAttribute("data-index") || "0");
+        const isActive = cardIndex === index;
         card.classList.toggle("is-active", isActive);
         card.setAttribute("aria-pressed", isActive ? "true" : "false");
-        const link = card.querySelector(".team-accordion__link");
-        if (link instanceof HTMLElement) {
-          link.tabIndex = isActive ? 0 : -1;
-        }
       });
+    }
+
+    function syncForViewport() {
+      const active = cards.find((card) => card.classList.contains("is-active"));
+      const activeIndex = Number(active?.getAttribute("data-index") || "0");
+      activate(activeIndex);
     }
 
     cards.forEach((card) => {
@@ -108,6 +136,14 @@ const members = [
         activate(index);
       });
     });
+
+    if (typeof mobileQuery.addEventListener === "function") {
+      mobileQuery.addEventListener("change", syncForViewport);
+    } else {
+      mobileQuery.addListener(syncForViewport);
+    }
+
+    syncForViewport();
   }
 
   if (document.readyState === "loading") {
@@ -119,52 +155,58 @@ const members = [
 
 <style>
   .team-accordion {
-    padding: clamp(3.5rem, 7vw, 5.5rem) 0;
+    padding: 4.5rem 0 3.5rem;
     background: #ffffff;
   }
 
   .team-accordion__inner {
-    max-width: 1120px;
+    width: 100%;
   }
 
   .team-accordion__header {
-    text-align: center;
-    max-width: 40rem;
-    margin: 0 auto 2.75rem;
+    margin: 0 0 2.5rem;
   }
 
-  .team-accordion__badge {
+  .team-accordion__kicker {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    padding: 0.4rem 0.95rem;
-    border: 1px solid #bae6fd;
-    border-radius: 9999px;
-    background: #ffffff;
-    color: #0369a1;
+    gap: 0.5rem;
     font-family: var(--font-sans);
-    font-size: 0.82rem;
+    font-size: var(--label-sm);
     font-weight: 500;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.11em;
+    color: var(--text-muted);
+    text-transform: uppercase;
     margin-bottom: 1.1rem;
+  }
+
+  .team-accordion__kicker-sq {
+    width: 6.5px;
+    height: 6.5px;
+    background-color: #0284c7;
+    display: inline-block;
+    border-radius: 1px;
   }
 
   .team-accordion__title {
     font-family: var(--font-sans);
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 500;
+    font-size: clamp(1.85rem, 2.75vw, 2.75rem);
+    font-weight: 400;
     color: #0f172a;
-    letter-spacing: -0.03em;
-    line-height: 1.15;
-    margin: 0 0 0.85rem;
+    line-height: 1.25;
+    letter-spacing: -0.035em;
+    margin: 0 0 0.75rem;
+    max-width: 40rem;
   }
 
   .team-accordion__subtitle {
     font-family: var(--font-sans);
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: #64748b;
+    font-size: var(--body-md);
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--text-secondary);
     margin: 0;
+    max-width: 36rem;
   }
 
   .team-accordion__gallery {
@@ -187,6 +229,7 @@ const members = [
     color: #ffffff;
     text-align: left;
     outline: none;
+    text-decoration: none;
     transition: flex 0.45s ease;
   }
 
@@ -197,6 +240,10 @@ const members = [
   .team-accordion__card.is-active {
     flex: 1 1 auto;
     cursor: default;
+  }
+
+  .team-accordion__card--mobile-only {
+    display: none;
   }
 
   .team-accordion__img {
@@ -215,17 +262,25 @@ const members = [
     filter: grayscale(0%);
   }
 
-  .team-accordion__shade {
+  .team-accordion__shade,
+  .team-accordion__about-bg {
     position: absolute;
     inset: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .team-accordion__shade {
     background: linear-gradient(
       to top,
       rgba(15, 23, 42, 0.82) 0%,
       rgba(15, 23, 42, 0.28) 42%,
       rgba(15, 23, 42, 0.12) 100%
     );
-    pointer-events: none;
-    z-index: 1;
+  }
+
+  .team-accordion__about-bg {
+    background: linear-gradient(180deg, #0369a1 0%, #0f172a 100%);
   }
 
   .team-accordion__meta {
@@ -253,22 +308,24 @@ const members = [
 
   .team-accordion__name {
     font-family: var(--font-sans);
-    font-size: clamp(1.25rem, 2vw, 1.6rem);
-    font-weight: 500;
+    font-size: var(--heading-sm);
+    font-weight: 450;
     color: #ffffff;
     line-height: 1.2;
+    letter-spacing: -0.02em;
   }
 
   .team-accordion__role {
     font-family: var(--font-sans);
-    font-size: 0.95rem;
+    font-size: var(--body-sm);
+    font-weight: 400;
     color: rgba(255, 255, 255, 0.78);
   }
 
   .team-accordion__link {
     margin-top: 0.45rem;
     font-family: var(--font-sans);
-    font-size: 0.85rem;
+    font-size: var(--body-sm);
     font-weight: 500;
     color: #7dd3fc;
     text-decoration: none;
@@ -288,9 +345,9 @@ const members = [
     writing-mode: vertical-rl;
     transform: translateX(-50%) rotate(180deg);
     font-family: var(--font-sans);
-    font-size: 0.82rem;
+    font-size: var(--label-sm);
     font-weight: 500;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
     color: #ffffff;
     white-space: nowrap;
     opacity: 1;
@@ -302,6 +359,15 @@ const members = [
     pointer-events: none;
   }
 
+  .team-accordion__card--about .team-accordion__vertical {
+    opacity: 1;
+    color: #e0f2fe;
+  }
+
+  .team-accordion__card--about:hover {
+    transform: none;
+  }
+
   @media (max-width: 860px) {
     .team-accordion__gallery {
       height: 340px;
@@ -309,7 +375,21 @@ const members = [
     }
 
     .team-accordion__card {
-      flex-basis: 56px;
+      flex-basis: 58px;
+    }
+
+    .team-accordion__card--desktop-only {
+      display: none;
+    }
+
+    .team-accordion__card--mobile-only {
+      display: block;
+      flex: 0 0 58px;
+      cursor: pointer;
+    }
+
+    .team-accordion__meta .team-accordion__link {
+      display: none;
     }
 
     .team-accordion__meta {
@@ -328,8 +408,9 @@ const members = [
       height: 300px;
     }
 
-    .team-accordion__card {
-      flex-basis: 48px;
+    .team-accordion__card,
+    .team-accordion__card--mobile-only {
+      flex-basis: 52px;
     }
 
     .team-accordion__name {
@@ -337,11 +418,11 @@ const members = [
     }
 
     .team-accordion__role {
-      font-size: 0.85rem;
+      font-size: var(--body-sm);
     }
 
     .team-accordion__vertical {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       bottom: 1rem;
     }
   }
