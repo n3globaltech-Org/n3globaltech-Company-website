@@ -6,41 +6,6 @@ import PrinciplesSection from '../components/PrinciplesSection.astro';
 import ClientLogosMarquee from '../components/ClientLogosMarquee.astro';
 import TeamSection from '../components/TeamSection.astro';
 import FaqSection from '../components/FaqSection.astro';
-
-const founders = [
-  {
-    name: "Nibras",
-    role: "Founder &amp; CEO",
-    bio: "Cloud and DevOps engineer with industry experience in Abu Dhabi. Drives infrastructure, scalability, and deployment strategy.",
-    initials: "N",
-    color: "sky",
-    image: "/team/nibras.webp",
-  },
-  {
-    name: "Nabeel",
-    role: "Co-founder &amp; CTO",
-    bio: "Mobile developer who began his career in Kochi. Leads native iOS, Android, and cross-platform work across our products.",
-    initials: "N",
-    color: "violet",
-    image: "/team/nabeel.webp",
-  },
-  {
-    name: "Nafi",
-    role: "Co-founder",
-    bio: "Java developer with hands-on experience in Wayanad. Anchors backend architecture, APIs, and integrations.",
-    initials: "N",
-    color: "teal",
-    image: "/team/nafi.webp",
-  },
-  {
-    name: "Farseen",
-    role: "Co-founder",
-    bio: "Our earliest mentor. Guided us from first projects to industry practice, and still shapes how we build today.",
-    initials: "F",
-    color: "amber",
-    image: "/team/farseen.webp",
-  },
-];
 ---
 
 <Layout
@@ -74,13 +39,13 @@ const founders = [
         Engineers turned founders, building custom software &amp; SaaS for businesses worldwide.
       </h1>
       <p class="about-hero-custom__subtitle">
-        Founded in Kerala with engineering hubs in India &amp; Dubai, we unite cloud infrastructure, native mobile engineering, and backend systems to build products that scale.
+        Founded in Kerala with engineering hubs across India &amp; the UAE, we specialize in software engineering, cloud infrastructure, SaaS development, and AI-powered automation — building products that scale.
       </p>
 
       <div class="about-stats-grid">
         <div class="about-stat-card">
-          <div class="about-stat-card__num">04</div>
-          <div class="about-stat-card__label">Co-Founders &amp; Leads</div>
+          <div class="about-stat-card__num">06</div>
+          <div class="about-stat-card__label">Technology Specialists</div>
         </div>
         <div class="about-stat-card">
           <div class="about-stat-card__num">30+</div>
@@ -188,15 +153,100 @@ const founders = [
             <div class="story-card__col">
               <div class="dubai-badge">
                 <span class="dubai-badge__dot"></span>
-                Dubai Studio Partnership
+                Our Global Presence
               </div>
               <p class="story-card__text">
-                N3 Global Tech serves as the primary engineering and delivery force behind <strong>Klay Agency</strong>, our Dubai-based studio — delivering high-grade software solutions to clients across the UAE and wider GCC alongside our India operations.
+                N3 Global Tech serves businesses across India, the UAE, and international markets through engineering expertise, cloud-first solutions, and product innovation.
+              </p>
+              <p class="story-card__text">
+                Across the GCC, we operate through <strong>Klay Agency</strong> — our GCC-facing brand. Together we work as one multidisciplinary team across India and the UAE, combining strategy, technology, and execution to deliver high-grade software solutions across the wider region.
               </p>
             </div>
           </div>
         </article>
       </div>
+    </div>
+  </section>
+
+  <!-- What We Do -->
+  <section class="section wwd-section">
+    <div class="container wwd-section__container">
+      <div class="wwd-section__header">
+        <div class="story-section__kicker">
+          <span class="story-section__kicker-sq"></span> CAPABILITIES
+        </div>
+        <h2 class="wwd-section__title">What We Do</h2>
+      </div>
+      <div class="story-section__divider"></div>
+
+      <div class="wwd-grid">
+        <article class="wwd-item">
+          <span class="wwd-item__num">01</span>
+          <h3 class="wwd-item__title">Custom Software Development</h3>
+          <p class="wwd-item__desc">Software tailored to your business requirements — built to improve productivity, streamline operations, and accelerate growth.</p>
+        </article>
+        <article class="wwd-item">
+          <span class="wwd-item__num">02</span>
+          <h3 class="wwd-item__title">SaaS Product Development</h3>
+          <p class="wwd-item__desc">From concept and architecture to deployment and scaling, we build SaaS platforms designed for long-term success.</p>
+        </article>
+        <article class="wwd-item">
+          <span class="wwd-item__num">03</span>
+          <h3 class="wwd-item__title">Cloud Infrastructure &amp; DevOps</h3>
+          <p class="wwd-item__desc">Secure, resilient, high-performance cloud environments built for modern digital businesses.</p>
+        </article>
+        <article class="wwd-item">
+          <span class="wwd-item__num">04</span>
+          <h3 class="wwd-item__title">AI &amp; Intelligent Automation</h3>
+          <p class="wwd-item__desc">Practical AI solutions that automate workflows, improve decision-making, and increase efficiency.</p>
+        </article>
+        <article class="wwd-item">
+          <span class="wwd-item__num">05</span>
+          <h3 class="wwd-item__title">Web &amp; Mobile Applications</h3>
+          <p class="wwd-item__desc">Modern digital products that balance performance, usability, and business impact.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products We've Built -->
+  <section class="section products-built-section">
+    <div class="container products-built-section__container">
+      <div class="products-built-section__header">
+        <div class="story-section__kicker">
+          <span class="story-section__kicker-sq"></span> OUR PRODUCTS
+        </div>
+        <h2 class="products-built-section__title">Products We've Built</h2>
+      </div>
+      <div class="story-section__divider"></div>
+
+      <p class="products-built-section__intro">
+        Beyond client projects, we invest in developing software products that solve real operational challenges.
+      </p>
+
+      <div class="products-built-grid">
+        <article class="products-built-item">
+          <h3 class="products-built-item__title">Circle for Work</h3>
+          <p class="products-built-item__desc">A hyperlocal community trust platform connecting local service providers, rentals, and skilled workers with neighbors for everyday jobs, products, and equipment sharing.</p>
+        </article>
+        <article class="products-built-item">
+          <h3 class="products-built-item__title">N3 FitBook</h3>
+          <p class="products-built-item__desc">A fitness business management platform helping gym operators manage memberships, recurring payments, attendance, and daily operations.</p>
+        </article>
+        <article class="products-built-item">
+          <h3 class="products-built-item__title">N3 ServiceBook</h3>
+          <p class="products-built-item__desc">A service management platform designed to streamline customer interactions and service delivery workflows.</p>
+        </article>
+        <article class="products-built-item">
+          <h3 class="products-built-item__title">N3 BusinessBook</h3>
+          <p class="products-built-item__desc">A business operations platform that helps organizations centralize processes, improve visibility, and scale more effectively.</p>
+        </article>
+      </div>
+
+      <p class="products-built-section__outro">
+        Building and managing our own products gives us firsthand experience in product development, infrastructure scaling, user adoption, and long-term software evolution.
+        <a href="/products/" class="products-built-section__link">Explore our products</a>
+      </p>
     </div>
   </section>
 
@@ -216,28 +266,15 @@ const founders = [
 
       <div class="mv-grid">
         <article class="mv-card">
-          <div class="mv-card__icon mv-card__icon--mission">
-            <svg width="26" height="26" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
-              <path d="m12 15 3.3 3.3a1 1 0 0 0 1.4 0l2.6-2.6a1 1 0 0 0 0-1.4L16 11"/>
-              <path d="m11 16-4.3-4.3a1 1 0 0 1 0-1.4l2.6-2.6a1 1 0 0 1 1.4 0L14 11"/>
-              <path d="M15 4c-5-2-12 1-12 1s3 7 1 12l2.6 2.6c5 2 12-1 12-1s-3-7-1-12z"/>
-            </svg>
-          </div>
+          <span class="mv-card__num">01</span>
           <h3 class="mv-card__heading">Our Mission</h3>
-          <p class="mv-card__desc">To empower businesses with practical, scalable, user-focused digital solutions that eliminate operational friction and drive long-term sustainable growth.</p>
+          <p class="mv-card__desc">We help businesses replace manual, error-prone workflows with software that actually holds up — scalable systems that remove friction instead of adding it, built by engineers who've run their own products in production.</p>
         </article>
 
         <article class="mv-card">
-          <div class="mv-card__icon mv-card__icon--vision">
-            <svg width="26" height="26" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <circle cx="12" cy="12" r="6"/>
-              <circle cx="12" cy="12" r="2"/>
-            </svg>
-          </div>
+          <span class="mv-card__num">02</span>
           <h3 class="mv-card__heading">Our Vision</h3>
-          <p class="mv-card__desc">To stand as a globally trusted technology partner — crafting high-performing digital systems that elevate everyday business operations and define modern engineering standards.</p>
+          <p class="mv-card__desc">To be the engineering partner GCC and Indian businesses call first when a technology problem is too complex to hand to a template — proven not by claims, but by the platforms we've shipped and kept running.</p>
         </article>
       </div>
     </div>
@@ -324,17 +361,11 @@ const founders = [
 </Layout>
 
 <style>
-  /* DEDICATED ABOUT HERO */
+  /* DEDICATED ABOUT HERO — width via shared .container (1280px), matching landing */
   .about-hero-custom {
-    padding-top: calc(80px + 4rem);
-    padding-bottom: 4rem;
+    padding-top: calc(80px + 2.75rem);
+    padding-bottom: 2.75rem;
     background: #ffffff;
-  }
-
-  .about-hero-custom__container {
-    max-width: 1200px;
-    padding: 0 1.5rem;
-    margin: 0 auto;
   }
 
   .about-hero-custom__title {
@@ -344,7 +375,7 @@ const founders = [
     font-family: var(--font-sans);
     line-height: 1.25;
     letter-spacing: -0.02em;
-    margin: 1.25rem 0 1rem;
+    margin: 1rem 0 0.85rem;
     max-width: 980px;
   }
 
@@ -353,14 +384,14 @@ const founders = [
     line-height: 1.65;
     color: #475569;
     max-width: 820px;
-    margin-bottom: 3.5rem;
+    margin-bottom: 2.5rem;
   }
 
   .about-stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
-    padding-top: 2rem;
+    padding-top: 1.5rem;
     border-top: 1px solid #e2e8f0;
   }
 
@@ -386,21 +417,15 @@ const founders = [
 
   /* STORY SECTION */
   .story-section {
-    padding: 5rem 0;
+    padding: 3.75rem 0;
     background: #ffffff;
-  }
-
-  .story-section__container {
-    max-width: 1200px;
-    padding: 0 1.5rem;
-    margin: 0 auto;
   }
 
   .story-section__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.15rem;
   }
 
   .story-section__title {
@@ -434,7 +459,7 @@ const founders = [
     width: 100%;
     height: 1px;
     background: #e2e8f0;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
 
   .story-grid {
@@ -588,23 +613,156 @@ const founders = [
     border-radius: 50%;
   }
 
-  /* MISSION & VISION */
-  .mv-section {
-    padding: 5rem 0;
+  /* WHAT WE DO */
+  .wwd-section {
+    padding: 3.75rem 0;
     background: #ffffff;
   }
 
-  .mv-section__container {
-    max-width: 1200px;
-    padding: 0 1.5rem;
-    margin: 0 auto;
+  .wwd-section__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.15rem;
+  }
+
+  .wwd-section__title {
+    font-size: clamp(2rem, 3.2vw, 2.75rem);
+    font-weight: 400;
+    color: #0f172a;
+    font-family: var(--font-sans);
+    margin: 0;
+  }
+
+  .wwd-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem 3rem;
+  }
+
+  .wwd-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  .wwd-item__num {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: #0284c7;
+  }
+
+  .wwd-item__title {
+    font-size: 1.25rem;
+    font-weight: 450;
+    color: #0f172a;
+    font-family: var(--font-sans);
+    margin: 0;
+  }
+
+  .wwd-item__desc {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: #475569;
+    margin: 0;
+    max-width: 42ch;
+  }
+
+  /* PRODUCTS WE'VE BUILT */
+  .products-built-section {
+    padding: 3.75rem 0;
+    background: #f8fafc;
+  }
+
+  .products-built-section__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.15rem;
+  }
+
+  .products-built-section__title {
+    font-size: clamp(2rem, 3.2vw, 2.75rem);
+    font-weight: 400;
+    color: #0f172a;
+    font-family: var(--font-sans);
+    margin: 0;
+  }
+
+  .products-built-section__intro {
+    font-size: 1.1rem;
+    line-height: 1.65;
+    color: #475569;
+    max-width: 52rem;
+    margin: 0 0 2rem;
+  }
+
+  .products-built-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .products-built-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  .products-built-item__title {
+    font-size: 1.25rem;
+    font-weight: 450;
+    color: #0f172a;
+    font-family: var(--font-sans);
+    margin: 0;
+  }
+
+  .products-built-item__desc {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: #475569;
+    margin: 0;
+  }
+
+  .products-built-section__outro {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #334155;
+    max-width: 52rem;
+    margin: 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  .products-built-section__link {
+    display: inline-block;
+    margin-left: 0.35rem;
+    color: #0284c7;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .products-built-section__link:hover {
+    text-decoration: underline;
+  }
+
+  /* MISSION & VISION */
+  .mv-section {
+    padding: 3.75rem 0;
+    background: #ffffff;
   }
 
   .mv-section__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.15rem;
   }
 
   .mv-section__title {
@@ -624,35 +782,25 @@ const founders = [
   .mv-card {
     background: #f8fafc;
     border: 1px solid #f1f5f9;
-    border-radius: 24px;
-    padding: 2.75rem 2.5rem;
+    border-radius: 20px;
+    padding: 2.25rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   }
 
   .mv-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.05);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.04);
     border-color: #e2e8f0;
   }
 
-  .mv-card__icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-  }
-
-  .mv-card__icon--mission {
-    background: #e0f2fe;
+  .mv-card__num {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
     color: #0284c7;
-  }
-
-  .mv-card__icon--vision {
-    background: #f3e8ff;
-    color: #7c3aed;
   }
 
   .mv-card__heading {
@@ -660,11 +808,11 @@ const founders = [
     font-weight: 450;
     color: #0f172a;
     font-family: var(--font-sans);
-    margin: 0 0 0.75rem;
+    margin: 0;
   }
 
   .mv-card__desc {
-    font-size: 0.98rem;
+    font-size: 1rem;
     line-height: 1.65;
     color: #475569;
     margin: 0;
@@ -672,14 +820,14 @@ const founders = [
 
   /* ABOUT CTA */
   .about-cta-section {
-    padding: 5rem 0 6rem;
+    padding: 3.75rem 0 4.5rem;
   }
 
   .about-cta {
     position: relative;
     background: linear-gradient(135deg, #0f172a 0%, #0369a1 100%);
     border-radius: 30px;
-    padding: 4.5rem 3rem;
+    padding: 3.5rem 2.5rem;
     text-align: center;
     color: #ffffff;
     overflow: hidden;
@@ -785,11 +933,11 @@ const founders = [
 
   /* RESPONSIVE MEDIA QUERIES */
   @media (max-width: 900px) {
-    .story-section, .mv-section {
-      padding: 3.5rem 0;
+    .story-section, .mv-section, .wwd-section, .products-built-section {
+      padding: 2.75rem 0;
     }
 
-    .story-grid, .mv-grid {
+    .story-grid, .mv-grid, .wwd-grid, .products-built-grid {
       grid-template-columns: 1fr;
       gap: 1.5rem;
     }
@@ -817,8 +965,8 @@ const founders = [
 
   @media (max-width: 640px) {
     .about-hero-custom {
-      padding-top: calc(70px + 2rem);
-      padding-bottom: 2.5rem;
+      padding-top: calc(70px + 1.75rem);
+      padding-bottom: 2rem;
     }
 
     .about-hero-custom__title {
@@ -836,7 +984,7 @@ const founders = [
       gap: 1.25rem;
     }
 
-    .story-section__header, .mv-section__header {
+    .story-section__header, .mv-section__header, .wwd-section__header, .products-built-section__header {
       flex-direction: column;
       align-items: flex-start;
       gap: 0.25rem;

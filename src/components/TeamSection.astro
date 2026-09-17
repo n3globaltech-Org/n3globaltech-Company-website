@@ -3,19 +3,19 @@ const founders = [
   {
     name: "Nibras",
     role: "Founder & CEO",
-    bio: "Cloud and DevOps engineer with industry experience in Abu Dhabi. Drives infrastructure, scalability, and deployment strategy.",
+    bio: "Nibras specializes in cloud architecture, infrastructure automation, platform security, and reliability engineering. He designs scalable cloud environments that enable businesses to operate efficiently and confidently at scale.",
     image: "/team/nibras.webp",
   },
   {
     name: "Nabeel",
     role: "Co-founder & CTO",
-    bio: "Mobile developer who began his career in Kochi. Leads native iOS, Android, and cross-platform work across our products.",
+    bio: "Nabeel defines the technical architecture behind N3's platforms and software solutions. His expertise lies in building scalable technology ecosystems that connect applications, infrastructure, and business operations.",
     image: "/team/nabeel.webp",
   },
   {
     name: "Nafi",
     role: "Co-founder",
-    bio: "Java developer with hands-on experience in Wayanad. Anchors backend architecture, APIs, and integrations.",
+    bio: "Nafi focuses on backend systems, platform engineering, and technology integrations. He ensures solutions are delivered with reliability, scalability, and performance from development through production.",
     image: "/team/nafi.webp",
   },
   {
@@ -23,6 +23,18 @@ const founders = [
     role: "Co-founder",
     bio: "Our earliest mentor. Guided us from first projects to industry practice, and still shapes how we build today.",
     image: "/team/farseen.webp",
+  },
+  {
+    name: "Ashwal P",
+    role: "AI & Intelligent Systems Architect",
+    bio: "Ashwal develops AI-powered systems that improve operational efficiency and digital experiences. His work focuses on intelligent automation, AI workflows, and practical applications of emerging technologies that create measurable business outcomes.",
+    image: "/team/ashwal.svg",
+  },
+  {
+    name: "Mohammed Rafeel",
+    role: "Strategy & Client Success Architect",
+    bio: "Mohammed works closely with organizations to align business goals with technology initiatives. He leads solution planning, client engagement, and project strategy, helping businesses transform complex requirements into scalable digital solutions.",
+    image: "/team/rafeel.svg",
   },
 ];
 ---
@@ -79,7 +91,7 @@ const founders = [
             <p id="spotlight-bio" class="team-spotlight__bio">{founders[0].bio}</p>
           </div>
 
-          <div id="spotlight-counter" class="team-spotlight__counter">(01/04)</div>
+          <div id="spotlight-counter" class="team-spotlight__counter">(01/06)</div>
         </div>
       </div>
     </div>
@@ -103,36 +115,9 @@ const founders = [
   </div>
 </section>
 
-<script is:inline>
+<script define:vars={{ teamData: founders }}>
   (function() {
     function initTeamSlider() {
-      var teamData = [
-        {
-          name: "Nibras",
-          role: "Founder & CEO",
-          bio: "Cloud and DevOps engineer with industry experience in Abu Dhabi. Drives infrastructure, scalability, and deployment strategy.",
-          image: "/team/nibras.webp"
-        },
-        {
-          name: "Nabeel",
-          role: "Co-founder & CTO",
-          bio: "Mobile developer who began his career in Kochi. Leads native iOS, Android, and cross-platform work across our products.",
-          image: "/team/nabeel.webp"
-        },
-        {
-          name: "Nafi",
-          role: "Co-founder",
-          bio: "Java developer with hands-on experience in Wayanad. Anchors backend architecture, APIs, and integrations.",
-          image: "/team/nafi.webp"
-        },
-        {
-          name: "Farseen",
-          role: "Co-founder",
-          bio: "Our earliest mentor. Guided us from first projects to industry practice, and still shapes how we build today.",
-          image: "/team/farseen.webp"
-        }
-      ];
-
       var currentIndex = 0;
 
       var imgEl = document.getElementById("spotlight-img");
@@ -144,6 +129,10 @@ const founders = [
       var nextBtn = document.getElementById("team-next");
       var thumbs = document.querySelectorAll(".team-thumb");
       var thumbsContainer = document.querySelector(".team-thumbnails");
+
+      function pad2(n) {
+        return n < 10 ? "0" + n : String(n);
+      }
 
       function updateSpotlight(index) {
         if (index < 0) index = teamData.length - 1;
@@ -163,7 +152,9 @@ const founders = [
         if (nameEl) nameEl.textContent = data.name;
         if (roleEl) roleEl.textContent = data.role;
         if (bioEl) bioEl.textContent = data.bio;
-        if (counterEl) counterEl.textContent = "(0" + (currentIndex + 1) + "/0" + teamData.length + ")";
+        if (counterEl) {
+          counterEl.textContent = "(" + pad2(currentIndex + 1) + "/" + pad2(teamData.length) + ")";
+        }
 
         thumbs.forEach(function(thumb, idx) {
           if (idx === currentIndex) {
@@ -200,21 +191,15 @@ const founders = [
 
 <style>
   .team-section {
-    padding: 5rem 0;
+    padding: 3.75rem 0;
     background: #ffffff;
-  }
-
-  .team-section__container {
-    max-width: 1200px;
-    padding: 0 1.5rem;
-    margin: 0 auto;
   }
 
   .team-section__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.15rem;
   }
 
   .team-section__title {
@@ -248,7 +233,7 @@ const founders = [
     width: 100%;
     height: 1px;
     background: #e2e8f0;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
 
   /* Spotlight Card */
@@ -377,8 +362,8 @@ const founders = [
   /* Thumbnails Grid */
   .team-thumbnails {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.25rem;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
   }
 
   .team-thumb {
@@ -389,7 +374,7 @@ const founders = [
     position: relative;
     border-radius: 12px;
     overflow: hidden;
-    height: 280px;
+    height: 220px;
     transition: all 0.3s ease;
     outline: none;
   }
@@ -419,7 +404,7 @@ const founders = [
   .team-thumb__name {
     color: #ffffff;
     font-weight: 500;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     font-family: var(--font-sans);
   }
 
@@ -453,6 +438,15 @@ const founders = [
     box-shadow: 0 10px 30px rgba(2, 132, 199, 0.3);
   }
 
+  @media (max-width: 1100px) {
+    .team-thumbnails {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .team-thumb {
+      height: 240px;
+    }
+  }
+
   @media (max-width: 900px) {
     .team-spotlight__card {
       grid-template-columns: 1fr;
@@ -463,7 +457,7 @@ const founders = [
       height: 280px;
     }
     .team-thumbnails {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
     }
     .team-thumb {

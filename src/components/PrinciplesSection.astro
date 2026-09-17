@@ -82,9 +82,13 @@
     </div>
 
     <div class="principles-summary">
-      <p class="principles-summary__highlight">Technology should do more than function. It should create value.</p>
+      <h3 class="principles-summary__title">Why N3 Global Tech</h3>
+      <p class="principles-summary__highlight">Businesses don't need another agency promising transformation. They need engineers who've actually shipped and run the systems.</p>
       <p>
-        At N3 Global Tech, we combine engineering expertise, product thinking, and cloud-first architecture to build solutions that solve real business problems. Whether developing custom software, launching SaaS products, or modernizing business operations, we focus on delivering technology that remains reliable, scalable, and impactful long after deployment.
+        We don't just build software for clients — we run our own SaaS products in production, which means every system we design is shaped by what actually breaks at scale, not what looks good in a pitch deck.
+      </p>
+      <p>
+        Custom platform, SaaS product, or full operations overhaul — we build for what happens after launch, not launch day.
       </p>
     </div>
   </div>
@@ -93,7 +97,7 @@
 <style>
   .principles-section {
     position: relative;
-    padding: 6rem 0;
+    padding: 3.75rem 0;
     background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
     overflow: hidden;
   }
@@ -111,14 +115,12 @@
   .principles__inner {
     position: relative;
     z-index: 2;
-    max-width: 1140px;
-    margin: 0 auto;
   }
 
   .principles__head {
     text-align: center;
     max-width: 720px;
-    margin: 0 auto 3.5rem auto;
+    margin: 0 auto 2.5rem auto;
   }
 
   .principles__kicker {
@@ -222,6 +224,14 @@
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
   }
 
+  .principles-summary__title {
+    font-family: var(--font-sans);
+    font-size: clamp(1.5rem, 2.5vw, 1.85rem);
+    font-weight: 450;
+    color: #0f172a;
+    margin: 0 0 1rem;
+  }
+
   .principles-summary__highlight {
     font-family: var(--font-sans);
     font-size: var(--heading-sm, 1.25rem);
@@ -236,6 +246,10 @@
     color: var(--gray-600);
     line-height: 1.7;
     margin: 0;
+  }
+
+  .principles-summary p + p {
+    margin-top: 0.85rem;
   }
 
   .principles-summary a {
@@ -259,7 +273,7 @@
 
   @media (max-width: 640px) {
     .principles-section {
-      padding: 4rem 0;
+      padding: 2.75rem 0;
     }
     .principle-card {
       padding: 1.75rem 1.5rem;
