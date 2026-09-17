@@ -140,17 +140,6 @@ const faqs = [
             </div>
           </details>
         ))}
-        {limit && limit < faqs.length && (
-          <div class="faq-list-footer">
-            <a href="/faq/" class="faq-list-link">
-              <span>Explore all {faqs.length} questions</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12h14"></path>
-                <path d="m12 5 7 7-7 7"></path>
-              </svg>
-            </a>
-          </div>
-        )}
       </div>
 
     </div>
@@ -266,29 +255,6 @@ const faqs = [
 
   .faq-btn-pill:hover svg {
     transform: translate(2px, -2px);
-  }
-
-  .faq-list-footer {
-    padding-top: 2rem;
-    display: flex;
-    justify-content: flex-start;
-  }
-
-  .faq-list-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: var(--font-sans);
-    font-size: var(--body-md, 1rem);
-    font-weight: 500;
-    color: var(--brand-primary, #464feb);
-    text-decoration: none;
-    transition: all 0.2s ease;
-  }
-
-  .faq-list-link:hover {
-    color: var(--brand-primary-hover, #353ecb);
-    gap: 0.75rem;
   }
 
   .faq-cta {
