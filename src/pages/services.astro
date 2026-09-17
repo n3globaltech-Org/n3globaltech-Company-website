@@ -233,6 +233,57 @@ const faqs = [
     <div class="page-hero__bg-dots"></div>
   </section>
 
+  <!-- Capabilities: What We Do -->
+  <section class="section wwd-section">
+    <div class="container wwd-section__container">
+      <div class="wwd-section__header">
+        <div class="wwd-section__kicker">
+          <span class="wwd-section__kicker-sq"></span> CAPABILITIES
+        </div>
+        <h2 class="wwd-section__title">What We Do</h2>
+      </div>
+      <div class="wwd-section__divider"></div>
+
+      <div class="wwd-grid">
+        <article class="wwd-item">
+          <span class="wwd-item__num">01</span>
+          <h3 class="wwd-item__title">Custom Software Development</h3>
+          <p class="wwd-item__desc">
+            Software tailored to your business requirements — built to improve productivity, streamline operations, and accelerate growth.
+          </p>
+        </article>
+        <article class="wwd-item">
+          <span class="wwd-item__num">02</span>
+          <h3 class="wwd-item__title">SaaS Product Development</h3>
+          <p class="wwd-item__desc">
+            From concept and architecture to deployment and scaling, we build SaaS platforms designed for long-term success.
+          </p>
+        </article>
+        <article class="wwd-item">
+          <span class="wwd-item__num">03</span>
+          <h3 class="wwd-item__title">Cloud Infrastructure &amp; DevOps</h3>
+          <p class="wwd-item__desc">
+            Secure, resilient, high-performance cloud environments built for modern digital businesses.
+          </p>
+        </article>
+        <article class="wwd-item">
+          <span class="wwd-item__num">04</span>
+          <h3 class="wwd-item__title">AI &amp; Intelligent Automation</h3>
+          <p class="wwd-item__desc">
+            Practical AI solutions that automate workflows, improve decision-making, and increase efficiency.
+          </p>
+        </article>
+        <article class="wwd-item">
+          <span class="wwd-item__num">05</span>
+          <h3 class="wwd-item__title">Web &amp; Mobile Applications</h3>
+          <p class="wwd-item__desc">
+            Modern digital products that balance performance, usability, and business impact.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- Interactive What We Do Overview (Stacked Cards Deck) -->
   <WhatWeDoCards showTitle={false} />
 
@@ -987,7 +1038,113 @@ const faqs = [
     width: 100% !important;
   }
 
+  /* WHAT WE DO / CAPABILITIES */
+  .wwd-section {
+    padding: 3.5rem 0 4rem;
+    background: #ffffff;
+    position: relative;
+    z-index: 2;
+  }
 
+  .wwd-section__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.15rem;
+  }
+
+  .wwd-section__kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: #64748b;
+    text-transform: uppercase;
+  }
+
+  .wwd-section__kicker-sq {
+    width: 6.5px;
+    height: 6.5px;
+    background-color: #0284c7;
+    display: inline-block;
+    border-radius: 1px;
+  }
+
+  .wwd-section__title {
+    font-size: clamp(2rem, 3.2vw, 2.75rem);
+    font-weight: 400;
+    color: #0f172a;
+    font-family: var(--font-sans);
+    margin: 0;
+  }
+
+  .wwd-section__divider {
+    width: 100%;
+    height: 1px;
+    background: #e2e8f0;
+    margin-bottom: 2rem;
+  }
+
+  .wwd-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem 3rem;
+  }
+
+  .wwd-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  .wwd-item__num {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: #0284c7;
+  }
+
+  .wwd-item__title {
+    font-size: 1.25rem;
+    font-weight: 450;
+    color: #0f172a;
+    font-family: var(--font-sans);
+    margin: 0;
+  }
+
+  .wwd-item__desc {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: #475569;
+    margin: 0;
+    max-width: 42ch;
+  }
+
+  @media (max-width: 768px) {
+    .wwd-section {
+      padding: 2.5rem 0 3rem;
+    }
+
+    .wwd-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .wwd-section__header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .wwd-section__divider {
+      margin-bottom: 1.5rem;
+    }
+  }
 </style>
 
 <script is:inline>

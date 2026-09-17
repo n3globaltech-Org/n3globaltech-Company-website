@@ -53,7 +53,7 @@ body {
 
 /* Legacy fallback container class mapped to container-main */
 .container {
-  width: min(100% - 2.5rem, var(--container-max-main));
+  width: min(100% - 1.5rem, var(--container-max-main));
   margin-inline: auto;
 }
 
