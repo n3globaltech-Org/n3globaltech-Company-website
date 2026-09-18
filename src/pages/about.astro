@@ -1089,6 +1089,46 @@ import FaqSection from "../components/FaqSection.astro";
       min-width: 0;
       box-sizing: border-box;
     }
+
+    /* ABOUT CTA MOBILE PADDING */
+    .about-cta-section {
+      padding: 2.25rem 0 3rem;
+    }
+
+    .about-cta {
+      padding: 2.25rem 1.25rem;
+      border-radius: 20px;
+    }
+
+    .about-cta__title {
+      font-size: 1.65rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .about-cta__desc {
+      font-size: 0.95rem;
+      line-height: 1.55;
+      margin-bottom: 1.75rem;
+    }
+
+    .about-cta__actions {
+      gap: 0.85rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .about-cta {
+      padding: 2rem 1.15rem;
+      border-radius: 18px;
+    }
+
+    .about-cta__title {
+      font-size: 1.45rem;
+    }
+
+    .about-cta__desc {
+      font-size: 0.9rem;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
