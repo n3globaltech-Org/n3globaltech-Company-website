@@ -1,10 +1,10 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
-import PrinciplesSection from '../components/PrinciplesSection.astro';
-import TeamSection from '../components/TeamSection.astro';
-import FaqSection from '../components/FaqSection.astro';
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import PrinciplesSection from "../components/PrinciplesSection.astro";
+import TeamSection from "../components/TeamSection.astro";
+import FaqSection from "../components/FaqSection.astro";
 ---
 
 <Layout
@@ -14,19 +14,24 @@ import FaqSection from '../components/FaqSection.astro';
 >
   <Navbar />
 
-  <script type="application/ld+json" is:inline set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "AboutPage",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https://www.n3global.tech/about/"
-    },
-    "name": "About N3 Global Tech",
-    "description": "Meet the team behind N3 Global Tech. Four engineers turned founders building custom software and SaaS for businesses worldwide.",
-    "publisher": {
-      "@id": "https://www.n3global.tech/#organization"
-    }
-  })}></script>
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": "https://www.n3global.tech/about/",
+      },
+      name: "About N3 Global Tech",
+      description:
+        "Meet the team behind N3 Global Tech. Four engineers turned founders building custom software and SaaS for businesses worldwide.",
+      publisher: {
+        "@id": "https://www.n3global.tech/#organization",
+      },
+    })}
+  />
 
   <!-- About N3 Global Tech Hero Section -->
   <section class="about-hero-custom">
@@ -96,7 +101,6 @@ import FaqSection from '../components/FaqSection.astro';
   <!-- Built by Engineers: two images + stats -->
   <section class="built-section">
     <div class="container built-section__container">
-
       <!-- Top: label + heading -->
       <div class="built-section__top">
         <div class="built-section__label">
@@ -104,7 +108,8 @@ import FaqSection from '../components/FaqSection.astro';
           BUILT BY ENGINEERS
         </div>
         <h2 class="built-section__heading">
-          We bring engineering expertise, product thinking, and hands-on experience to build software that businesses can rely on.
+          We bring engineering expertise, product thinking, and hands-on
+          experience to build software that businesses can rely on.
         </h2>
       </div>
 
@@ -150,7 +155,6 @@ import FaqSection from '../components/FaqSection.astro';
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -168,14 +172,29 @@ import FaqSection from '../components/FaqSection.astro';
     <div class="container">
       <div class="about-cta">
         <div class="about-cta__glow"></div>
-        <h2 class="about-cta__title">Want to build something great together?</h2>
-        <p class="about-cta__desc">Whether you have a specific software project in mind or want to explore scalable technology solutions for your business, we're ready. We respond within 24 hours.</p>
-        
+        <h2 class="about-cta__title">
+          Want to build something great together?
+        </h2>
+        <p class="about-cta__desc">
+          Whether you have a specific software project in mind or want to
+          explore scalable technology solutions for your business, we're ready.
+          We respond within 24 hours.
+        </p>
+
         <div class="about-cta__actions">
           <a href="/contact/" class="hero__pill-link">
             <span class="hero__pill-text">Start a Project</span>
             <span class="hero__pill-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
                 <line x1="7" y1="17" x2="17" y2="7"></line>
                 <polyline points="7 7 17 7 17 17"></polyline>
               </svg>
@@ -188,16 +207,18 @@ import FaqSection from '../components/FaqSection.astro';
   </section>
 
   <script is:inline>
-    (function() {
+    (function () {
       function initAboutHeroScroll() {
         var statement = document.getElementById("about-hero-title");
         if (!statement) return;
 
         var text = statement.textContent.trim();
         var words = text.split(/\s+/);
-        statement.innerHTML = words.map(function(w) {
-          return '<span class="about-word">' + w + ' </span>';
-        }).join('');
+        statement.innerHTML = words
+          .map(function (w) {
+            return '<span class="about-word">' + w + " </span>";
+          })
+          .join("");
 
         var wordSpans = statement.querySelectorAll(".about-word");
         var heroSection = statement.closest(".about-hero");
@@ -206,14 +227,14 @@ import FaqSection from '../components/FaqSection.astro';
           if (!heroSection || !wordSpans.length) return;
           var rect = heroSection.getBoundingClientRect();
           var windowH = window.innerHeight;
-          
+
           var start = windowH * 0.85;
           var end = windowH * 0.35;
           var progress = (start - rect.top) / (start - end);
           progress = Math.max(0, Math.min(1, progress));
 
           var activeIndex = Math.floor(progress * wordSpans.length);
-          wordSpans.forEach(function(span, idx) {
+          wordSpans.forEach(function (span, idx) {
             if (idx <= activeIndex) {
               span.classList.add("is-active");
             } else {
@@ -487,8 +508,8 @@ import FaqSection from '../components/FaqSection.astro';
     border-radius: 18px;
     overflow: hidden;
     box-shadow: 0 8px 28px -8px rgba(15, 23, 42, 0.12);
-    width: 355px;
-    height: 405px;
+    width: 470px;
+    height: 395px;
     flex-shrink: 0;
     box-sizing: border-box;
     align-self: center;
@@ -567,7 +588,10 @@ import FaqSection from '../components/FaqSection.astro';
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease,
+      border-color 0.3s ease;
   }
 
   .story-card:hover {
@@ -645,9 +669,6 @@ import FaqSection from '../components/FaqSection.astro';
     border-radius: 50%;
   }
 
-
-
-
   /* MISSION & VISION */
   .mv-section {
     padding: 3.75rem 0;
@@ -683,7 +704,10 @@ import FaqSection from '../components/FaqSection.astro';
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease,
+      border-color 0.3s ease;
   }
 
   .mv-card:hover {
@@ -736,7 +760,11 @@ import FaqSection from '../components/FaqSection.astro';
     right: -100px;
     width: 450px;
     height: 450px;
-    background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, transparent 70%);
+    background: radial-gradient(
+      circle,
+      rgba(56, 189, 248, 0.25) 0%,
+      transparent 70%
+    );
     pointer-events: none;
   }
 
@@ -840,8 +868,8 @@ import FaqSection from '../components/FaqSection.astro';
     }
 
     .about-hero__media {
-      width: 240px;
-      height: 280px;
+      width: 380px;
+      height: 315px;
     }
 
     .about-hero__title {
@@ -855,7 +883,8 @@ import FaqSection from '../components/FaqSection.astro';
       display: none !important;
     }
 
-    .story-section, .mv-section {
+    .story-section,
+    .mv-section {
       padding: 2.75rem 0;
     }
 
@@ -891,7 +920,8 @@ import FaqSection from '../components/FaqSection.astro';
       font-size: 2.2rem;
     }
 
-    .story-grid, .mv-grid {
+    .story-grid,
+    .mv-grid {
       grid-template-columns: minmax(0, 1fr);
       gap: 1.5rem;
     }
@@ -1035,7 +1065,8 @@ import FaqSection from '../components/FaqSection.astro';
       }
     }
 
-    .story-section__header, .mv-section__header {
+    .story-section__header,
+    .mv-section__header {
       flex-direction: column;
       align-items: flex-start;
       gap: 0.25rem;
@@ -1046,7 +1077,8 @@ import FaqSection from '../components/FaqSection.astro';
       margin-bottom: 1.5rem;
     }
 
-    .story-card, .mv-card {
+    .story-card,
+    .mv-card {
       padding: 1.5rem;
       border-radius: 16px;
       min-width: 0;
