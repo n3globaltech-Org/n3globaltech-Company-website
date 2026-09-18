@@ -57,15 +57,6 @@
                     decoding="async"
                   />
                 </div>
-                <div class="craft-item">
-                  <img 
-                    src="/images/why-choose-us/live-progress.webp" 
-                    alt="Laptop Web Platform" 
-                    class="craft-device craft-device--laptop"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
               </div>
 
               <!-- Group 2 (Duplicate for 100% seamless infinite scroll loop) -->
@@ -93,15 +84,6 @@
                     src="/images/why-choose-us/end-craft-watch.webp" 
                     alt="" 
                     class="craft-device craft-device--watch"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-                <div class="craft-item">
-                  <img 
-                    src="/images/why-choose-us/live-progress.webp" 
-                    alt="" 
-                    class="craft-device craft-device--laptop"
                     loading="lazy"
                     decoding="async"
                   />
@@ -506,10 +488,11 @@
 
   /* ===== Card 1: End-to-End Craft with Smooth Infinite Horizontal Device Marquee ===== */
   .why-card--craft {
-    flex: 1;
+    height: 415px;
     display: flex;
     flex-direction: column;
-    padding: 1.5rem 1.5rem 1.75rem 1.5rem;
+    justify-content: space-between;
+    padding: 1.35rem 1.25rem 1.35rem 1.25rem;
     min-width: 0;
     max-width: 100%;
     width: 100%;
@@ -524,7 +507,7 @@
     align-items: center;
     position: relative;
     overflow: hidden;
-    height: 240px;
+    height: 215px;
     width: 100%;
     max-width: 100%;
     min-width: 0;
@@ -583,7 +566,7 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    height: 215px;
+    height: 190px;
   }
 
   .craft-device {
@@ -597,27 +580,21 @@
   }
 
   .craft-device--tablet {
-    height: 180px;
+    height: 150px;
   }
 
   .craft-device--mobile {
-    height: 200px;
+    height: 172px;
     filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.12));
   }
 
   .craft-device--watch {
-    height: 165px;
-  }
-
-  .craft-device--laptop {
-    height: 175px;
-    max-width: 230px;
-    filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.1));
+    height: 140px;
   }
 
   .why-card--craft .why-card__body {
     text-align: center;
-    margin-top: 1.35rem;
+    margin-top: 0.85rem;
   }
 
   .why-card--craft .why-card__desc {
@@ -629,12 +606,12 @@
   .why-card--approval {
     background: linear-gradient(135deg, #44b6b0 0%, #2f9a94 100%);
     border: none;
-    padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+    padding: 1.2rem 1.25rem;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 115px;
+    grid-template-columns: minmax(0, 1fr) 105px;
     gap: 0.85rem;
     align-items: center;
-    height: 190px;
+    height: 175px;
     min-width: 0;
     max-width: 100%;
     width: 100%;
@@ -679,8 +656,8 @@
   }
 
   .approval-avatar-wrap {
-    width: 115px;
-    height: 155px;
+    width: 105px;
+    height: 142px;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
@@ -699,13 +676,13 @@
   .why-card--progress {
     background: linear-gradient(180deg, #0ea5e9 0%, #0284c7 50%, #0369a1 100%);
     border: none;
-    padding: 2.25rem 1.5rem 0 1.5rem;
+    padding: 1.85rem 1.35rem 0 1.35rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     text-align: center;
-    flex: 1;
+    height: 415px;
     overflow: hidden;
     min-width: 0;
     max-width: 100%;
@@ -714,25 +691,25 @@
   }
 
   .progress-header {
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.85rem;
     width: 100%;
   }
 
   .progress-title {
-    font-size: 1.65rem;
+    font-size: 1.6rem;
     font-weight: 700;
     color: #ffffff;
     font-family: var(--font-sans);
     letter-spacing: -0.025em;
-    margin: 0 0 0.5rem 0;
+    margin: 0 0 0.45rem 0;
   }
 
   .progress-desc {
     font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.92);
-    line-height: 1.5;
+    line-height: 1.48;
     font-family: var(--font-sans);
-    max-width: 32ch;
+    max-width: 28ch;
     margin-inline: auto;
   }
 
@@ -741,17 +718,20 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    margin-top: auto;
+    margin-top: 0.65rem;
+    flex: 1;
+    overflow: hidden;
   }
 
   .progress-laptop {
-    width: 96%;
-    max-width: 390px;
+    width: 95%;
+    max-width: 375px;
     height: auto;
     display: block;
     filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.22));
     transform: translateY(2px);
     transition: transform 0.3s ease;
+    margin-bottom: -3px;
   }
 
   .why-card--progress:hover .progress-laptop {
@@ -763,7 +743,7 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.25rem;
-    height: 190px;
+    height: 175px;
     min-width: 0;
     max-width: 100%;
     width: 100%;
@@ -771,14 +751,14 @@
   }
 
   .why-card--mini {
-    padding: 1.25rem 1rem;
+    padding: 1.15rem 0.85rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    gap: 0.45rem;
-    height: 100%;
+    gap: 0.4rem;
+    height: 175px;
     min-width: 0;
     max-width: 100%;
     width: 100%;
@@ -814,7 +794,8 @@
 
   /* ===== Column 3: Modern Stack with Continuous Horizontal Marquee ===== */
   .why-card--stack {
-    padding: 1.75rem 1.5rem 1.5rem 1.5rem;
+    height: 205px;
+    padding: 1.5rem 1.25rem 1.25rem 1.25rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -826,7 +807,7 @@
   }
 
   .stack-header {
-    margin-bottom: 1.25rem;
+    margin-bottom: 0.85rem;
     width: 100%;
   }
 
@@ -936,8 +917,8 @@
 
   /* Card 5: Built To Scale */
   .why-card--scale {
-    flex: 1;
-    padding: 2rem 1.5rem 0 1.5rem;
+    height: 385px;
+    padding: 1.85rem 1.25rem 0 1.25rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -951,7 +932,7 @@
   }
 
   .scale-header {
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem;
     width: 100%;
   }
 
@@ -970,7 +951,7 @@
 
   .scale-mobile {
     width: 84%;
-    max-width: 290px;
+    max-width: 275px;
     height: auto;
     display: block;
     margin-bottom: -15px;
@@ -996,6 +977,13 @@
       width: 100%;
     }
 
+    .why-card--craft,
+    .why-card--progress,
+    .why-card--scale,
+    .why-card--stack {
+      height: auto;
+    }
+
     .why-card--approval {
       height: auto;
       min-height: 160px;
@@ -1006,6 +994,11 @@
       height: auto;
       min-height: 160px;
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .why-card--mini {
+      height: auto;
+      min-height: 160px;
     }
 
     .why-card--progress {
