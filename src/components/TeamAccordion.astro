@@ -4,21 +4,19 @@ const members = [
     name: "Nibras",
     role: "Founder & CEO",
     image: "/team/nibras.webp",
+    desktopImage: "/team/nibras-desktop.webp",
   },
   {
     name: "Nabeel",
     role: "Co-founder & CTO",
     image: "/team/nabeel.webp",
+    desktopImage: "/team/nabeel-desktop.webp",
   },
   {
     name: "Nafi",
     role: "Co-founder",
     image: "/team/nafi.webp",
-  },
-  {
-    name: "Farseen",
-    role: "Co-founder",
-    image: "/team/farseen.webp",
+    desktopImage: "/team/nafi-desktop.webp",
   },
 ];
 ---
@@ -44,15 +42,20 @@ const members = [
           aria-pressed={idx === 0 ? "true" : "false"}
           aria-label={`${member.name}, ${member.role}`}
         >
-          <img
-            src={member.image}
-            alt=""
-            class="team-accordion__img"
-            width="640"
-            height="800"
-            loading={idx === 0 ? "eager" : "lazy"}
-            decoding="async"
-          />
+          <picture class="team-accordion__picture">
+            {member.desktopImage && (
+              <source media="(min-width: 861px)" srcset={member.desktopImage} />
+            )}
+            <img
+              src={member.image}
+              alt=""
+              class="team-accordion__img"
+              width="640"
+              height="800"
+              loading={idx === 0 ? "eager" : "lazy"}
+              decoding="async"
+            />
+          </picture>
           <div class="team-accordion__shade" aria-hidden="true"></div>
 
           <div class="team-accordion__meta">
@@ -154,13 +157,6 @@ const members = [
 </script>
 
 <style>
-  /* Temporarily hidden on desktop until updated photos are ready */
-  @media (min-width: 861px) {
-    .team-accordion {
-      display: none !important;
-    }
-  }
-
   .team-accordion {
     padding: 4.5rem 0 3.5rem;
     background: #ffffff;
@@ -251,6 +247,14 @@ const members = [
 
   .team-accordion__card--mobile-only {
     display: none;
+  }
+
+  .team-accordion__picture {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
   }
 
   .team-accordion__img {

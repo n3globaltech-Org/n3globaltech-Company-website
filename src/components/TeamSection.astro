@@ -5,36 +5,35 @@ const founders = [
     role: "Founder & CEO",
     bio: "Nibras specializes in cloud architecture, infrastructure automation, platform security, and reliability engineering. He designs scalable cloud environments that enable businesses to operate efficiently and confidently at scale.",
     image: "/team/nibras.webp",
+    position: "center top",
   },
   {
     name: "Nabeel",
     role: "Co-founder & CTO",
     bio: "Nabeel defines the technical architecture behind N3's platforms and software solutions. His expertise lies in building scalable technology ecosystems that connect applications, infrastructure, and business operations.",
     image: "/team/nabeel.webp",
+    position: "center center",
   },
   {
     name: "Nafi",
     role: "Co-founder",
     bio: "Nafi focuses on backend systems, platform engineering, and technology integrations. He ensures solutions are delivered with reliability, scalability, and performance from development through production.",
     image: "/team/nafi.webp",
-  },
-  {
-    name: "Farseen",
-    role: "Co-founder",
-    bio: "Our earliest mentor. Guided us from first projects to industry practice, and still shapes how we build today.",
-    image: "/team/farseen.webp",
+    position: "center top",
   },
   {
     name: "Ashwal P",
     role: "AI & Intelligent Systems Architect",
     bio: "Ashwal develops AI-powered systems that improve operational efficiency and digital experiences. His work focuses on intelligent automation, AI workflows, and practical applications of emerging technologies that create measurable business outcomes.",
     image: "/team/ashwal.webp",
+    position: "center center",
   },
   {
     name: "Mohammed Rafeel",
     role: "Strategy & Client Success Architect",
     bio: "Mohammed works closely with organizations to align business goals with technology initiatives. He leads solution planning, client engagement, and project strategy, helping businesses transform complex requirements into scalable digital solutions.",
     image: "/team/rafeel.webp",
+    position: "center top",
   },
 ];
 ---
@@ -57,6 +56,7 @@ const founders = [
             id="spotlight-img"
             src={founders[0].image}
             alt={founders[0].name}
+            style={founders[0].position ? `object-position: ${founders[0].position};` : undefined}
             class="team-spotlight__photo"
             width="320"
             height="320"
@@ -91,7 +91,7 @@ const founders = [
             <p id="spotlight-bio" class="team-spotlight__bio">{founders[0].bio}</p>
           </div>
 
-          <div id="spotlight-counter" class="team-spotlight__counter">(01/06)</div>
+          <div id="spotlight-counter" class="team-spotlight__counter">(01/05)</div>
         </div>
       </div>
     </div>
@@ -105,7 +105,15 @@ const founders = [
           data-index={idx}
           aria-label={`Select ${f.name}`}
         >
-          <img src={f.image} alt={f.name} class="team-thumb__img" width="200" height="200" loading="lazy" />
+          <img
+            src={f.image}
+            alt={f.name}
+            style={f.position ? `object-position: ${f.position};` : undefined}
+            class="team-thumb__img"
+            width="200"
+            height="200"
+            loading="lazy"
+          />
           <div class="team-thumb__overlay">
             <span class="team-thumb__name">{f.name}</span>
           </div>
@@ -146,6 +154,7 @@ const founders = [
           setTimeout(function() {
             imgEl.src = data.image;
             imgEl.alt = data.name;
+            imgEl.style.objectPosition = data.position || 'center center';
             imgEl.style.opacity = '1';
           }, 120);
         }
@@ -362,7 +371,7 @@ const founders = [
   /* Thumbnails Grid */
   .team-thumbnails {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 1rem;
   }
 
