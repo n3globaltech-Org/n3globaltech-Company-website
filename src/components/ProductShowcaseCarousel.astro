@@ -13,7 +13,7 @@ export interface ShowcaseItem {
   link?: string;
   bgColor: string;
   darkTheme?: boolean;
-  mediaType: 'image' | 'video';
+  mediaType: 'image' | 'video' | 'logo';
   mediaSrc: string;
   mediaAlt?: string;
 }
@@ -70,6 +70,18 @@ const { items } = Astro.props;
                 preload="metadata"
                 aria-label={item.mediaAlt || item.title}
               ></video>
+            ) : item.mediaType === 'logo' ? (
+              <div class="showcase-media__logo-stage">
+                <div class="showcase-media__logo-card">
+                  <img
+                    src={item.mediaSrc || "/n3logo.webp"}
+                    alt={item.mediaAlt || "N3 Global Tech"}
+                    class="showcase-media__logo-img"
+                    loading={index === 0 ? 'eager' : 'lazy'}
+                    decoding="async"
+                  />
+                </div>
+              </div>
             ) : (
               <img
                 src={item.mediaSrc}
@@ -311,6 +323,94 @@ const { items } = Astro.props;
     height: 100%;
     object-fit: cover;
     display: block;
+  }
+
+  /* Logo Stage styling (Google Gemini tile replacement) */
+  .showcase-media__logo-stage {
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 35% 30%, #e2f0ff 0%, #a4cdff 45%, #609efc 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .showcase-media__logo-stage::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 75% 70%, rgba(255, 255, 255, 0.4) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .showcase-media__logo-card {
+    width: 270px;
+    height: 270px;
+    background: #ffffff;
+    border-radius: 46px;
+    box-shadow:
+      0 20px 50px -10px rgba(11, 87, 208, 0.2),
+      0 8px 24px -4px rgba(0, 0, 0, 0.05),
+      inset 0 1px 1.5px rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.45s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.45s ease;
+  }
+
+  .showcase-slide:hover .showcase-media__logo-card {
+    transform: scale(1.04) translateY(-4px);
+    box-shadow:
+      0 28px 60px -10px rgba(11, 87, 208, 0.28),
+      0 12px 28px -4px rgba(0, 0, 0, 0.08);
+  }
+
+  .showcase-media__logo-img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.08));
+    transition: transform 0.45s cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  .showcase-slide:hover .showcase-media__logo-img {
+    transform: scale(1.03);
+  }
+
+  @media (max-width: 900px) {
+    .showcase-media__logo-stage {
+      min-height: 280px;
+    }
+    .showcase-media__logo-card {
+      width: 210px;
+      height: 210px;
+      border-radius: 36px;
+    }
+    .showcase-media__logo-img {
+      width: 115px;
+      height: 115px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .showcase-media__logo-stage {
+      min-height: 220px;
+    }
+    .showcase-media__logo-card {
+      width: 160px;
+      height: 160px;
+      border-radius: 28px;
+    }
+    .showcase-media__logo-img {
+      width: 90px;
+      height: 90px;
+    }
   }
 
   /* Controls Section */
