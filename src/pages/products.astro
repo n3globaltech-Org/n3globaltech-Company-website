@@ -2,6 +2,57 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import ProductShowcaseCarousel, { type ShowcaseItem } from '../components/ProductShowcaseCarousel.astro';
+
+const showcaseItems: ShowcaseItem[] = [
+  {
+    id: "n3-business-erp",
+    category: "N3 Business",
+    title: "Our most advanced ERP",
+    titleColor: "#0b57d0",
+    desc: "Everything your business needs to manage operations, customers, sales, projects, inventory, and more — connected in one place.",
+    buttonText: "Read more",
+    link: "#products-list",
+    bgColor: "#d3e3fd",
+    mediaType: "image",
+    mediaSrc: "/products/n3-businessbook.webp",
+    mediaAlt: "N3 Business - Our most advanced ERP"
+  },
+  {
+    id: "n3-businessbook-devices",
+    category: "N3 BusinessBook",
+    title: "N3 BusinessBook is now available across devices",
+    titleColor: "#0b57d0",
+    desc: "We're introducing N3 BusinessBook to simplify managing your business — from everyday operations and projects to the tools and workflows you need to keep your work moving.",
+    author: {
+      name: "By Nabeel",
+      role: "CTO, N3 BusinessBook"
+    },
+    buttonText: "Read more",
+    link: "/contact/",
+    bgColor: "#d3e3fd",
+    mediaType: "video",
+    mediaSrc: "/products/gemini-desktop.mp4",
+    mediaAlt: "N3 BusinessBook across devices demonstration"
+  },
+  {
+    id: "circle-for-work-launch",
+    category: "Circle for Work",
+    title: "Circle for Work is launching a new way to connect work",
+    titleColor: "#004d33",
+    desc: "We're building Circle for Work to make it easier to discover services, products, rentals, and opportunities — all in one place, helping people and local businesses connect and get things done.",
+    author: {
+      name: "By Nibras",
+      role: "Founder & CEO, N3 Global Tech"
+    },
+    buttonText: "Read more",
+    link: "/products/circle-for-work/",
+    bgColor: "#d8e4de",
+    mediaType: "image",
+    mediaSrc: "/products/circle-for-work-showcase.webp",
+    mediaAlt: "Circle for Work - Connecting work, services, and opportunities"
+  }
+];
 
 const products = [
   {
@@ -74,9 +125,9 @@ const products = [
           <!-- Pill Navigation Bar matching Google reference -->
           <div class="products-pill-wrapper">
             <div class="products-pill-bar" role="navigation" aria-label="Product categories">
-              <a href="#products-list" class="products-pill-item">Search in new ways</a>
+              <a href="#showcase" class="products-pill-item">Search in new ways</a>
               <a href="/contact/" class="products-pill-item">Chat with Gemini</a>
-              <a href="#products-list" class="products-pill-item">Try AI tools</a>
+              <a href="#showcase" class="products-pill-item">Try AI tools</a>
               <a href="#products-list" class="products-pill-item">Explore more products</a>
             </div>
           </div>
@@ -95,6 +146,9 @@ const products = [
           />
         </div>
       </section>
+
+      <!-- Google Reference Featured Products Showcase Carousel -->
+      <ProductShowcaseCarousel items={showcaseItems} />
 
       <div class="container-narrow" id="products-list">
         <!-- Section Header -->
