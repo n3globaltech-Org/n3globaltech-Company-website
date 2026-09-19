@@ -1,9 +1,14 @@
 ---
 interface Props {
   showTitle?: boolean;
+  linkToContact?: boolean;
 }
 
-const { showTitle = true } = Astro.props;
+const { showTitle = true, linkToContact = false } = Astro.props;
+
+const ctaText = linkToContact
+  ? "START A PROJECT • GET IN TOUCH •"
+  : "EXPLORE OUR SERVICES • EXPLORE •";
 ---
 
 <section class="section services-stacked-section" id="what-we-do-cards">
@@ -50,9 +55,9 @@ const { showTitle = true } = Astro.props;
 
             <div class="stacked-card__footer">
               <a
-                href="/services#tech"
+                href={linkToContact ? "/contact?service=tech" : "/services#card-tech"}
                 class="circular-badge-cta"
-                aria-label="Explore Service"
+                aria-label={linkToContact ? "Start a Technology & Engineering Project" : "Explore Service"}
               >
                 <div class="badge-text-ring">
                   <svg viewBox="0 0 100 100" width="100%" height="100%">
@@ -67,7 +72,7 @@ const { showTitle = true } = Astro.props;
                       fill="#334155"
                     >
                       <textPath href="#circlePath-1-component" startOffset="0%">
-                        EXPLORE OUR SERVICES • EXPLORE •
+                        {ctaText}
                       </textPath>
                     </text>
                   </svg>
@@ -115,9 +120,9 @@ const { showTitle = true } = Astro.props;
 
             <div class="stacked-card__footer">
               <a
-                href="/services#strategy"
+                href={linkToContact ? "/contact?service=strategy" : "/services#card-strategy"}
                 class="circular-badge-cta"
-                aria-label="Explore Service"
+                aria-label={linkToContact ? "Consult with our Strategy Team" : "Explore Service"}
               >
                 <div class="badge-text-ring">
                   <svg viewBox="0 0 100 100" width="100%" height="100%">
@@ -132,7 +137,7 @@ const { showTitle = true } = Astro.props;
                       fill="#334155"
                     >
                       <textPath href="#circlePath-2-component" startOffset="0%">
-                        EXPLORE OUR SERVICES • EXPLORE •
+                        {ctaText}
                       </textPath>
                     </text>
                   </svg>
@@ -203,9 +208,9 @@ const { showTitle = true } = Astro.props;
 
             <div class="stacked-card__footer">
               <a
-                href="/services#brand"
+                href={linkToContact ? "/contact?service=branding" : "/services#card-brand"}
                 class="circular-badge-cta"
-                aria-label="Explore Service"
+                aria-label={linkToContact ? "Start a Brand & Design Project" : "Explore Service"}
               >
                 <div class="badge-text-ring">
                   <svg viewBox="0 0 100 100" width="100%" height="100%">
@@ -220,7 +225,7 @@ const { showTitle = true } = Astro.props;
                       fill="#334155"
                     >
                       <textPath href="#circlePath-3-component" startOffset="0%">
-                        EXPLORE OUR SERVICES • EXPLORE •
+                        {ctaText}
                       </textPath>
                     </text>
                   </svg>
@@ -268,9 +273,9 @@ const { showTitle = true } = Astro.props;
 
             <div class="stacked-card__footer">
               <a
-                href="/services#marketing"
+                href={linkToContact ? "/contact?service=marketing" : "/services#card-marketing"}
                 class="circular-badge-cta"
-                aria-label="Explore Service"
+                aria-label={linkToContact ? "Start a Marketing & Growth Campaign" : "Explore Service"}
               >
                 <div class="badge-text-ring">
                   <svg viewBox="0 0 100 100" width="100%" height="100%">
@@ -285,7 +290,7 @@ const { showTitle = true } = Astro.props;
                       fill="#334155"
                     >
                       <textPath href="#circlePath-4-component" startOffset="0%">
-                        EXPLORE OUR SERVICES • EXPLORE •
+                        {ctaText}
                       </textPath>
                     </text>
                   </svg>
