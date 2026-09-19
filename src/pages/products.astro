@@ -3,6 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import ProductShowcaseCarousel, { type ShowcaseItem } from '../components/ProductShowcaseCarousel.astro';
+import ProductQuickCards from '../components/ProductQuickCards.astro';
+import SearchInNewWays from '../components/SearchInNewWays.astro';
 
 const showcaseItems: ShowcaseItem[] = [
   {
@@ -12,7 +14,7 @@ const showcaseItems: ShowcaseItem[] = [
     titleColor: "#0b57d0",
     desc: "Everything your business needs to manage operations, customers, sales, projects, inventory, and more — connected in one place.",
     buttonText: "Read more",
-    link: "#products-list",
+    link: "/contact/",
     bgColor: "#d3e3fd",
     mediaType: "image",
     mediaSrc: "/products/n3-businessbook.webp",
@@ -51,56 +53,37 @@ const showcaseItems: ShowcaseItem[] = [
     mediaType: "image",
     mediaSrc: "/products/circle-for-work-showcase.webp",
     mediaAlt: "Circle for Work - Connecting work, services, and opportunities"
-  }
-];
-
-const products = [
-  {
-    tag: "Community Marketplace",
-    name: "Circle for Work",
-    desc: "A hyperlocal community trust platform connecting local service providers, rentals, and skilled workers with neighbors for everyday jobs, products, and equipment sharing.",
-    technologies: "React, Next.js, Node.js, PostgreSQL",
-    client: "Local Communities",
-    date: "Launch 2026",
-    image: "/circleforwork.jpeg",
-    imageBg: "#ffffff",
-    imageFit: "cover",
-    link: "/products/circle-for-work/",
   },
   {
-    tag: "Vehicle Management",
-    name: "N3 ServiceBook",
-    desc: "A comprehensive vehicle service management software that streamlines bookings, service tracking, invoicing, and customer management for auto service businesses.",
-    technologies: "React, Node.js, PostgreSQL, Tailwind CSS",
-    client: "AutoServe Garage",
-    date: "12 Oct 2024",
-    image: "/products/ServiceBook.svg",
-    imageBg: "#ffffff",
-    imageFit: "contain",
-    link: "https://www.n3servicebook.in/",
-  },
-  {
-    tag: "Gym Management",
-    name: "N3 FitBook",
-    desc: "An AI-powered gym management platform designed for modern fitness businesses, simplifying memberships, automating schedules, optimizing trainer assignments, and managing attendance and payments effortlessly.",
-    technologies: "React, React Native, Node.js, MongoDB",
-    client: "Elite Fitness Studios, AzeeFit",
-    date: "15 Mar 2025",
-    image: "/products/FitBook.svg",
-    imageBg: "#ffffff",
-    imageFit: "contain",
+    id: "n3-fitbook",
+    category: "N3 FitBook",
+    title: "The smarter way to run your fitness business",
+    titleColor: "#ffffff",
+    desc: "N3 FitBook brings memberships, scheduling, trainer management, attendance, and payments together in one AI-powered platform — built for gyms that want to grow.",
+    author: {
+      name: "By Nafih",
+      role: "Developer"
+    },
+    buttonText: "Read more",
     link: "https://www.n3fitbook.in/",
+    bgColor: "#262626",
+    darkTheme: true,
+    mediaType: "image",
+    mediaSrc: "/products/fitbook-showcase.webp",
+    mediaAlt: "N3 FitBook - AI-powered gym management platform"
   },
   {
-    tag: "Business Management",
-    name: "N3 BusinessBook",
-    desc: "An all-in-one business management platform that streamlines operations, finances, clients, and team workflows for small to mid-sized businesses.",
-    technologies: "React.js, Node.js, PostgreSQL",
-    client: "Small & Mid-Sized Businesses",
-    date: "20 May 2025",
-    image: "/products/BusinessBook.svg",
-    imageBg: "#ffffff",
-    imageFit: "contain",
+    id: "n3-servicebook",
+    category: "N3 ServiceBook",
+    title: "Vehicle service management, simplified",
+    titleColor: "#0b57d0",
+    desc: "From bookings and service tracking to invoicing and customer history — N3 ServiceBook gives auto service businesses everything they need to stay organized and efficient.",
+    buttonText: "Read more",
+    link: "https://www.n3servicebook.in/",
+    bgColor: "#d3e3fd",
+    mediaType: "image",
+    mediaSrc: "/products/servicebook-showcase.webp",
+    mediaAlt: "N3 ServiceBook - Vehicle service management software"
   }
 ];
 ---
@@ -125,10 +108,9 @@ const products = [
           <!-- Pill Navigation Bar matching Google reference -->
           <div class="products-pill-wrapper">
             <div class="products-pill-bar" role="navigation" aria-label="Product categories">
-              <a href="#showcase" class="products-pill-item">Search in new ways</a>
-              <a href="/contact/" class="products-pill-item">Chat with Gemini</a>
-              <a href="#showcase" class="products-pill-item">Try AI tools</a>
-              <a href="#products-list" class="products-pill-item">Explore more products</a>
+              <a href="#search-in-new-ways" class="products-pill-item">Run in new ways</a>
+              <a href="#showcase" class="products-pill-item">Featured platforms</a>
+              <a href="#products-list" class="products-pill-item">Explore all products</a>
             </div>
           </div>
         </div>
@@ -147,74 +129,15 @@ const products = [
         </div>
       </section>
 
+      <!-- Google-inspired 4 Quick Access Horizontal Cards Section -->
+      <ProductQuickCards />
+
+      <!-- Google-inspired "Search in new ways" Bento Grid Section -->
+      <SearchInNewWays />
+
       <!-- Google Reference Featured Products Showcase Carousel -->
       <ProductShowcaseCarousel items={showcaseItems} />
 
-      <div class="container-narrow" id="products-list">
-        <!-- Section Header -->
-        <div class="section-header">
-          <span class="meta-tag uppercase" style="margin-bottom: 0.5rem; display: inline-block;">Products We've Built</span>
-          <h2 class="section-title">Our Products</h2>
-          <p class="section-intro">
-            Beyond client projects, we invest in developing software products that solve real operational challenges. These platforms serve as a live showcase of what our hybrid <a href="/saas-development-company/">SaaS development company</a> can build for you.
-          </p>
-        </div>
-
-        <!-- Product Grid matching clean card aesthetic -->
-        <section class="product-grid">
-          {products.map((product) => {
-            const isExternal = product.link && product.link.startsWith('http');
-            const CardElement = product.link ? 'a' : 'div';
-            const extraProps = product.link
-              ? { 
-                  href: product.link, 
-                  ...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {}), 
-                  class: "product-card product-card--link" 
-                }
-              : { class: "product-card" };
-
-            return (
-              <CardElement {...extraProps}>
-                <div class="card-content">
-                  <div class="card-info">
-                    <span class="card-tag">{product.tag}</span>
-                    <h3 class="card-title">{product.name}</h3>
-                    <p class="card-desc">{product.desc}</p>
-                  </div>
-                  {product.link && (
-                    <div class="card-action">
-                      <span class="card-action-btn" aria-label={`Open ${product.name}`}>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                          <polyline points="15 3 21 3 21 9"></polyline>
-                          <line x1="10" y1="14" x2="21" y2="3"></line>
-                        </svg>
-                      </span>
-                    </div>
-                  )}
-                </div>
-                <div class="card-image-wrapper" style={product.imageBg ? `background-color: ${product.imageBg};` : undefined}>
-                  <img src={product.image} alt={product.name} class="card-image" loading="lazy" style={product.imageFit ? `object-fit: ${product.imageFit};` : undefined} />
-                </div>
-              </CardElement>
-            );
-          })}
-        </section>
-
-        <!-- Product Engineering Philosophy -->
-        <section class="philosophy-section">
-          <div class="philosophy-content">
-            <h3>Our Product Engineering Philosophy</h3>
-            <p>
-              We believe the best way to understand the challenges of running a SaaS business is to run one yourself. Our proprietary platforms are built on the exact same multi-tenant cloud architecture, subscription billing logic, and robust <a href="/custom-software-development/">custom software development</a> standards that we bring to our clients' projects. When we build products, we focus on high availability, seamless user onboarding, and enterprise-grade security from day one.
-            </p>
-            <p>
-              Building and managing our own products gives us firsthand experience in product development, infrastructure scaling, user adoption, and long-term software evolution.
-            </p>
-          </div>
-        </section>
-
-      </div>
     </main>
 
     <Footer />
@@ -395,157 +318,12 @@ const products = [
     text-underline-offset: 3px;
   }
 
-  /* Product Cards Grid matching Screenshot 2 */
-  .product-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.75rem;
-    margin: 0 0 3rem 0;
-    padding: 0;
-  }
 
-  .product-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-    background: #ffffff;
-    border: 1px solid #dadce0;
-    border-radius: 18px;
-    overflow: hidden;
-    min-height: 220px;
-    text-decoration: none;
-    color: inherit;
-    transition: all 0.25s ease;
-  }
-
-  .product-card--link {
-    cursor: pointer;
-  }
-
-  .product-card--link:hover {
-    border-color: #cbd5e1;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-    transform: translateY(-2px);
-  }
-
-  .card-content {
-    padding: 1.75rem 1.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex: 1;
-    min-width: 0;
-  }
-
-  .card-tag {
-    display: inline-block;
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: #5f6368;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.4rem;
-  }
-
-  .card-title {
-    font-family: var(--font-sans);
-    font-size: 1.35rem;
-    font-weight: 500;
-    color: #1f1f1f;
-    letter-spacing: -0.02em;
-    margin: 0 0 0.5rem 0;
-    line-height: 1.25;
-  }
-
-  .card-desc {
-    font-family: var(--font-sans);
-    font-size: 0.88rem;
-    line-height: 1.55;
-    color: #4b5563;
-    margin: 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .card-action {
-    margin-top: 1.25rem;
-  }
-
-  .card-action-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 6px;
-    color: #1a73e8;
-    transition: transform 0.2s ease;
-  }
-
-  .product-card--link:hover .card-action-btn {
-    transform: translate(2px, -2px);
-  }
-
-  .card-image-wrapper {
-    width: 190px;
-    flex-shrink: 0;
-    background-color: #f8fafc;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    padding: 1rem;
-  }
-
-  .card-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-  }
-
-  /* Philosophy Section */
-  .philosophy-section {
-    background: #f8fafc;
-    border-radius: 1.25rem;
-    padding: 2.5rem;
-    margin-top: 3.5rem;
-    margin-bottom: 4rem;
-    border: 1px solid #e2e8f0;
-  }
-  .philosophy-content h3 {
-    font-family: var(--font-sans);
-    font-size: var(--heading-sm);
-    font-weight: 500;
-    color: #0f172a;
-    margin: 0 0 1rem 0;
-  }
-  .philosophy-content p {
-    font-family: var(--font-sans);
-    color: var(--text-secondary);
-    line-height: 1.7;
-    font-size: var(--body-md);
-    margin: 0 0 0.75rem 0;
-  }
-  .philosophy-content a {
-    color: #0369a1;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
 
   /* Media Queries */
   @media (max-width: 900px) {
     .products-hero {
       padding-top: calc(68px + 1.25rem);
-    }
-    .product-grid {
-      grid-template-columns: 1fr;
-      gap: 1.25rem;
-    }
-    .card-image-wrapper {
-      width: 170px;
     }
   }
 
@@ -573,27 +351,6 @@ const products = [
     }
     .products-pill-item {
       font-size: 0.88rem;
-    }
-    .product-card {
-      min-height: auto;
-      border-radius: 14px;
-    }
-    .card-content {
-      padding: 1.25rem 1rem;
-    }
-    .card-title {
-      font-size: 1.15rem;
-    }
-    .card-desc {
-      font-size: 0.82rem;
-      -webkit-line-clamp: 2;
-    }
-    .card-image-wrapper {
-      width: 130px;
-      padding: 0.75rem;
-    }
-    .philosophy-section {
-      padding: 1.5rem 1.25rem;
     }
   }
 </style>

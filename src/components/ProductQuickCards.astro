@@ -1,0 +1,232 @@
+---
+// ProductQuickCards.astro - Google-style 4 horizontal quick-access cards
+export interface QuickCard {
+  id: string;
+  title: string;
+  url: string;
+  imageSrc: string;
+  imageAlt: string;
+}
+
+const quickCards: QuickCard[] = [
+  {
+    id: "product-support",
+    title: "Product support",
+    url: "/contact/",
+    imageSrc: "/images/products-support.webp",
+    imageAlt: "Product support assistance"
+  },
+  {
+    id: "book-demo",
+    title: "Book a Demo",
+    url: "/contact/",
+    imageSrc: "/images/products-store.webp",
+    imageAlt: "Schedule a personalized product walkthrough"
+  },
+  {
+    id: "custom-solutions",
+    title: "Custom Solutions",
+    url: "/custom-software-development/",
+    imageSrc: "/images/products-account.webp",
+    imageAlt: "Enterprise custom software development"
+  },
+  {
+    id: "accessibility-support",
+    title: "Accessibility support",
+    url: "/contact/",
+    imageSrc: "/images/products-accessibility.webp",
+    imageAlt: "Accessibility support and inclusive design"
+  }
+];
+---
+
+<section class="quick-cards-section" aria-label="Product quick links">
+  <div class="quick-cards-container">
+    <div class="quick-cards-grid">
+      {quickCards.map((card) => {
+        const isExternal = card.url.startsWith("http");
+        return (
+          <a
+            href={card.url}
+            target={isExternal ? "_blank" : undefined}
+            rel={isExternal ? "noopener noreferrer" : undefined}
+            class="quick-card"
+            id={card.id}
+            aria-label={card.title}
+          >
+          <div class="quick-card__content">
+            <h3 class="quick-card__title">{card.title}</h3>
+            <div class="quick-card__icon-wrap" aria-hidden="true">
+              <svg class="quick-card__icon" viewBox="0 0 24 24" width="20" height="20">
+                <path
+                  d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </div>
+          <div class="quick-card__media">
+            <img
+              src={card.imageSrc}
+              alt={card.imageAlt}
+              class="quick-card__image"
+              width="288"
+              height="384"
+              loading="lazy"
+            />
+          </div>
+        </a>
+      );
+      })}
+    </div>
+  </div>
+</section>
+
+<style>
+  .quick-cards-section {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 2.25rem 1.25rem 1rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .quick-cards-container {
+    max-width: 1220px;
+    margin: 0 auto;
+  }
+
+  /* 4-column horizontal card grid on desktop */
+  .quick-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  /* Horizontal card component matching Google */
+  .quick-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #ffffff;
+    border: 1px solid #dadce0;
+    border-radius: 14px;
+    overflow: hidden;
+    height: 144px;
+    text-decoration: none;
+    transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+    box-shadow: 0 1px 3px rgba(60, 64, 67, 0.05);
+  }
+
+  .quick-card:hover {
+    border-color: #bdc1c6;
+    box-shadow: 0 4px 14px rgba(60, 64, 67, 0.12);
+    transform: translateY(-2px);
+  }
+
+  /* Left text & icon content */
+  .quick-card__content {
+    flex: 1;
+    min-width: 0;
+    padding: 18px 16px 16px 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .quick-card__title {
+    font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1.05rem;
+    font-weight: 450;
+    color: #1f1f1f;
+    line-height: 1.35;
+    margin: 0;
+    letter-spacing: -0.01em;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .quick-card__icon-wrap {
+    display: flex;
+    align-items: center;
+    color: #1a73e8;
+  }
+
+  .quick-card__icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+    fill: #1a73e8;
+    transition: transform 0.2s ease;
+  }
+
+  .quick-card:hover .quick-card__icon {
+    transform: translate(1px, -1px);
+  }
+
+  /* Right image container */
+  .quick-card__media {
+    width: 38%;
+    height: 100%;
+    flex-shrink: 0;
+    overflow: hidden;
+    position: relative;
+    background-color: #f8f9fa;
+  }
+
+  .quick-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.35s cubic-bezier(0.2, 0, 0.2, 1);
+  }
+
+  .quick-card:hover .quick-card__image {
+    transform: scale(1.06);
+  }
+
+  /* Responsive styling */
+  @media (max-width: 1024px) and (min-width: 641px) {
+    .quick-cards-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .quick-card {
+      height: 132px;
+    }
+  }
+
+  /* Mobile: 1-column stacked layout matching user screenshot */
+  @media (max-width: 640px) {
+    .quick-cards-section {
+      padding: 1.75rem 1rem 0.75rem;
+    }
+
+    .quick-cards-grid {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .quick-card {
+      height: 114px;
+      border-radius: 12px;
+    }
+
+    .quick-card__content {
+      padding: 16px 14px 14px 16px;
+    }
+
+    .quick-card__title {
+      font-size: 0.98rem;
+    }
+
+    .quick-card__media {
+      width: 38%;
+    }
+  }
+</style>

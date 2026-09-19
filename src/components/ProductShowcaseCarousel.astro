@@ -12,6 +12,7 @@ export interface ShowcaseItem {
   buttonText?: string;
   link?: string;
   bgColor: string;
+  darkTheme?: boolean;
   mediaType: 'image' | 'video';
   mediaSrc: string;
   mediaAlt?: string;
@@ -30,7 +31,7 @@ const { items } = Astro.props;
       {items.map((item, index) => (
         <article class="showcase-slide" data-index={index}>
           <!-- Content Box -->
-          <div class="showcase-card__content" style={`background-color: ${item.bgColor};`}>
+          <div class={`showcase-card__content${item.darkTheme ? ' showcase-card--dark' : ''}`} style={`background-color: ${item.bgColor};`}>
             <div class="showcase-card__top">
               <span class="showcase-card__category">{item.category}</span>
               <h2 class="showcase-card__title" style={item.titleColor ? `color: ${item.titleColor};` : undefined}>
@@ -265,6 +266,34 @@ const { items } = Astro.props;
     background: rgba(0, 0, 0, 0.05);
     border-color: #1f1f1f;
     color: #000000;
+  }
+
+  /* Dark theme overrides for slides with dark backgrounds */
+  .showcase-card--dark .showcase-card__category {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .showcase-card--dark .showcase-card__desc {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .showcase-card--dark .author-name {
+    color: #ffffff;
+  }
+
+  .showcase-card--dark .author-role {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .showcase-card--dark .showcase-card__btn {
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #ffffff;
+  }
+
+  .showcase-card--dark .showcase-card__btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.7);
+    color: #ffffff;
   }
 
   .showcase-card__btn svg {

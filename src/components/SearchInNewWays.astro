@@ -1,0 +1,493 @@
+---
+// SearchInNewWays.astro - N3 Global Tech "Run your business in new ways" Staggered Bento Grid Section
+---
+
+<section class="search-ways-section" id="search-in-new-ways" aria-labelledby="search-ways-heading">
+  <div class="search-ways__container">
+    <!-- Header: N3 Logo, Title, CTA -->
+    <div class="search-ways__header">
+      <div class="search-ways__logo-wrapper">
+        <img
+          src="/n3logo.webp"
+          alt="N3 Global Tech"
+          class="search-ways__logo"
+          width="52"
+          height="52"
+          loading="lazy"
+        />
+      </div>
+      <h2 id="search-ways-heading" class="search-ways__title">Run your business in new ways</h2>
+      <div class="search-ways__cta-wrapper">
+        <a
+          href="#products-list"
+          class="search-ways__cta-btn"
+        >
+          Explore all products
+        </a>
+      </div>
+    </div>
+
+    <!-- Staggered Bento Layout: 2 Columns on Desktop, Single Stack on Mobile -->
+    <div class="bento-container">
+      <!-- Left Column: Tall Card (Circle for Work) + Short Card (N3 BusinessBook) -->
+      <div class="bento-column bento-column--left">
+        <!-- Card 1: Circle for Work (TALL CARD, Light Mint Green) -->
+        <div class="splash-tile splash-tile--tall splash-tile--c1" data-fill="green-50">
+          <a
+            href="/products/circle-for-work/"
+            class="splash-tile__link splash-tile__link--tall"
+            aria-label="Circle for Work - Connect with trusted local services, discover product sellers, and rent equipment in your neighborhood."
+          >
+            <div class="splash-tile__media-box">
+              <div class="splash-tile__inset">
+                <img
+                  src="/products/circle-for-work-bento.webp"
+                  alt="Circle for Work Mobile App Interface"
+                  class="splash-tile__media-img splash-tile__media-img--contain"
+                  width="960"
+                  height="540"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+
+            <div class="splash-tile__content">
+              <span class="splash-tile__eyebrow">CIRCLE FOR WORK</span>
+              <p class="splash-tile__text">
+                Connect with trusted local services, discover product sellers, and rent equipment in your neighborhood.
+              </p>
+              <div class="splash-tile__action" aria-hidden="true">
+                <svg class="splash-tile__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Card 2: N3 BusinessBook (SHORT / COMPACT CARD, Light Blue) -->
+        <div class="splash-tile splash-tile--short splash-tile--c2" data-fill="blue-50">
+          <a
+            href="#products-list"
+            class="splash-tile__link splash-tile__link--short"
+            aria-label="N3 BusinessBook - Simplify everyday operations, client accounts, invoicing, and team workflows in one unified dashboard."
+          >
+            <div class="splash-tile__content splash-tile__content--short">
+              <span class="splash-tile__eyebrow">N3 BUSINESSBOOK</span>
+              <p class="splash-tile__text">
+                Simplify everyday operations, client accounts, invoicing, and team workflows in one unified dashboard.
+              </p>
+              <div class="splash-tile__action" aria-hidden="true">
+                <svg class="splash-tile__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Column: Short Card (N3 ServiceBook) + Tall Card (N3 FitBook) -->
+      <div class="bento-column bento-column--right">
+        <!-- Card 3: N3 ServiceBook (SHORT / COMPACT CARD, Light Blue) -->
+        <div class="splash-tile splash-tile--short splash-tile--c3" data-fill="blue-50">
+          <a
+            href="https://www.n3servicebook.in/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="splash-tile__link splash-tile__link--short"
+            aria-label="N3 ServiceBook - Complete vehicle service tracking, digital job cards, automated invoicing, and garage customer history."
+          >
+            <div class="splash-tile__content splash-tile__content--short">
+              <span class="splash-tile__eyebrow">N3 SERVICEBOOK</span>
+              <p class="splash-tile__text">
+                Complete vehicle service tracking, digital job cards, automated invoicing, and garage customer history.
+              </p>
+              <div class="splash-tile__action" aria-hidden="true">
+                <svg class="splash-tile__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Card 4: N3 FitBook (TALL CARD, Light Warm Cream) -->
+        <div class="splash-tile splash-tile--tall splash-tile--c4" data-fill="yellow-50">
+          <a
+            href="https://www.n3fitbook.in/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="splash-tile__link splash-tile__link--tall"
+            aria-label="N3 FitBook - AI-powered gym memberships, automated class scheduling, trainer management, and contactless attendance."
+          >
+            <div class="splash-tile__media-box">
+              <div class="splash-tile__inset">
+                <img
+                  src="/products/fitbook-bento.webp"
+                  alt="N3 FitBook Gym Management Cloud Interface"
+                  class="splash-tile__media-img splash-tile__media-img--cover"
+                  width="1280"
+                  height="720"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+
+            <div class="splash-tile__content">
+              <span class="splash-tile__eyebrow">N3 FITBOOK</span>
+              <p class="splash-tile__text">
+                AI-powered gym memberships, automated class scheduling, trainer management, and contactless attendance.
+              </p>
+              <div class="splash-tile__action" aria-hidden="true">
+                <svg class="splash-tile__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .search-ways-section {
+    padding: 3.25rem 1.25rem 5rem;
+    background-color: #ffffff;
+    scroll-margin-top: 5rem;
+  }
+
+  .search-ways__container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Header styles */
+  .search-ways__header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .search-ways__logo-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.125rem;
+  }
+
+  .search-ways__logo {
+    display: block;
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 4px 14px rgba(11, 87, 208, 0.16);
+    transition: transform 0.25s ease;
+  }
+
+  .search-ways__logo:hover {
+    transform: scale(1.06);
+  }
+
+  .search-ways__title {
+    font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: clamp(2rem, 3.8vw, 2.75rem);
+    font-weight: 500;
+    color: #202124;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin: 0 0 1.5rem;
+  }
+
+  .search-ways__cta-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  .search-ways__cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1a73e8;
+    color: #ffffff;
+    font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    padding: 0.75rem 1.75rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+                transform 0.15s ease;
+  }
+
+  .search-ways__cta-btn:hover {
+    background-color: #1557b0;
+    box-shadow: 0 2px 6px rgba(26, 115, 232, 0.35);
+    transform: translateY(-1px);
+  }
+
+  .search-ways__cta-btn:active {
+    transform: translateY(0);
+  }
+
+  /* ----------------- Staggered Bento Grid Layout ----------------- */
+  .bento-container {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .bento-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* Tile Cards Base */
+  .splash-tile {
+    border-radius: 28px;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1), 
+                box-shadow 0.3s cubic-bezier(0.2, 0, 0, 1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .splash-tile:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Height Differences: Tall vs Short */
+  .splash-tile--tall {
+    flex: 1 0 auto;
+    min-height: 520px;
+  }
+
+  .splash-tile--short {
+    flex: 0 0 auto;
+    min-height: 220px;
+  }
+
+  /* Exact Pastel Theme Fill Colors matching Google reference */
+  .splash-tile[data-fill="blue-50"] {
+    background-color: #e8f0fe;
+  }
+
+  .splash-tile[data-fill="red-50"] {
+    background-color: #fce8e6;
+  }
+
+  .splash-tile[data-fill="green-50"] {
+    background-color: #e6f4ea;
+  }
+
+  .splash-tile[data-fill="yellow-50"] {
+    background-color: #fef7e0;
+  }
+
+  /* Link Wrappers */
+  .splash-tile__link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 24px;
+    text-decoration: none;
+    color: inherit;
+    box-sizing: border-box;
+  }
+
+  .splash-tile__link--short {
+    padding: 36px 32px;
+    justify-content: center;
+  }
+
+  /* Inset White Container for Media in Tall Cards */
+  .splash-tile__media-box {
+    margin-bottom: 20px;
+  }
+
+  .splash-tile__inset {
+    background-color: #ffffff;
+    border-radius: 20px;
+    height: 310px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  }
+
+  .splash-tile__media-img {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .splash-tile__media-img--contain {
+    object-fit: contain;
+    object-position: bottom center;
+  }
+
+  .splash-tile__media-img--cover {
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  /* Content & Typography */
+  .splash-tile__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex-grow: 1;
+    justify-content: space-between;
+  }
+
+  .splash-tile__content--short {
+    justify-content: center;
+  }
+
+  .splash-tile__eyebrow {
+    font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #202124;
+    margin-bottom: 0.5rem;
+  }
+
+  .splash-tile__text {
+    font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 1.45;
+    color: #202124;
+    max-width: 440px;
+    margin: 0 auto 1rem;
+  }
+
+  /* External Link Icon */
+  .splash-tile__action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1a73e8;
+    margin-top: auto;
+    padding-top: 0.25rem;
+    transition: color 0.2s ease;
+  }
+
+  .splash-tile__icon {
+    display: block;
+    transition: transform 0.25s cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  .splash-tile:hover .splash-tile__icon {
+    color: #174ea6;
+    transform: translate(2px, -2px);
+  }
+
+  /* Mobile Responsive View */
+  @media (max-width: 900px) {
+    .search-ways-section {
+      padding: 3rem 1rem 3.5rem;
+    }
+
+    .search-ways__header {
+      margin-bottom: 2rem;
+    }
+
+    .search-ways__logo {
+      width: 48px;
+      height: 48px;
+    }
+
+    .search-ways__title {
+      font-size: 1.875rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .search-ways__cta-btn {
+      width: 100%;
+      max-width: 360px;
+      padding: 0.8125rem 1.5rem;
+      font-size: 0.9375rem;
+    }
+
+    /* Stack cards in single column */
+    .bento-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .bento-column {
+      display: contents;
+    }
+
+    /* Exact mobile order: 1: Circle for Work -> 2: BusinessBook -> 3: ServiceBook -> 4: FitBook */
+    .splash-tile--c1 {
+      order: 1;
+    }
+
+    .splash-tile--c2 {
+      order: 2;
+    }
+
+    .splash-tile--c3 {
+      order: 3;
+    }
+
+    .splash-tile--c4 {
+      order: 4;
+    }
+
+    .splash-tile {
+      border-radius: 24px;
+    }
+
+    .splash-tile--tall {
+      min-height: auto;
+    }
+
+    .splash-tile--short {
+      min-height: auto;
+    }
+
+    .splash-tile__link {
+      padding: 20px 16px;
+    }
+
+    .splash-tile__link--short {
+      padding: 32px 16px;
+    }
+
+    .splash-tile__inset {
+      height: 240px;
+      border-radius: 18px;
+    }
+
+    .splash-tile__text {
+      font-size: 1.0625rem;
+      line-height: 1.4;
+      margin-bottom: 0.75rem;
+    }
+  }
+</style>
